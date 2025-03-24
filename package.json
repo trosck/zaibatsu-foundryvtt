@@ -1,0 +1,23 @@
+{
+  "name": "zaibatsu-foundryvtt",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trosck/zaibatsu-foundryvtt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trosck/zaibatsu-foundryvtt/issues"
+  },
+  "homepage": "https://github.com/trosck/zaibatsu-foundryvtt#readme",
+  "description": "An unofficial Zaibatsu game system for FoundryVTT",
+  "dependencies": {
+    "@league-of-foundry-developers/foundry-vtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main"
+  }
+}
