@@ -1,0 +1,14 @@
+---
+printWidth: 80
+semi: true
+tabWidth: 2
+quoteProps: consistent
+overrides:
+  - files:
+      - "*.scss"
+      - "*.css"
+    options:
+      parser: scss
+  - files: "*.html"
+    options:
+      parser: html

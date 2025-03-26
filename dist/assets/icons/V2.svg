@@ -1,0 +1,9 @@
+<svg width="460" height="464" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-width="10" stroke="#000" fill="#fff">
+    <path d="M229.5 226 342 275.928v133.143L229.5 459 117 409.07V275.928z" opacity="undefined" />
+    <path d="M230.5 5 343 54.928v133.143L230.5 238 118 188.07V54.928z" opacity="undefined" />
+    <path
+      d="M117.5 109.5 230 156.857v126.286L117.5 330.5 5 283.143V156.857zm225 0L455 156.857v126.286L342.5 330.5 230 283.143V156.857z"
+      opacity="undefined" />
+  </g>
+</svg>

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,17 @@
   "description": "An unofficial Zaibatsu game system for FoundryVTT",
   "dependencies": {
     "@league-of-foundry-developers/foundry-vtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.1",
+    "gulp": "^5.0.0",
+    "gulp-sass": "^6.0.1",
+    "rollup": "^4.37.0",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "sass": "^1.86.0",
+    "tslib": "^2.8.1"
   }
 }

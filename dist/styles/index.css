@@ -1,0 +1,323 @@
+.window-content,
+.window-app .window-content,
+.app-content,
+section.app-content,
+section.window-app,
+section.window-content {
+  background-attachment: fixed;
+  background-image: url("../assets/images/default/background.jpg");
+  background-repeat: repeat-x;
+  font-family: inherit;
+  color: rgb(41, 170, 225);
+  --color-scrollbar: colors.$default-color;
+  --color-scrollbar-border: colors.$header-border;
+}
+
+.app {
+  background-image: url("../assets/images/default/background.jpg");
+  background-repeat: repeat;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgb(0, 0, 0);
+  color: rgb(240, 240, 224);
+  border: 1px solid rgb(34, 80, 120);
+}
+
+p span,
+p {
+  background-color: transparent;
+  font-family: inherit;
+}
+
+.application input[type=text],
+.application input[type=number],
+.application input[type=password],
+.application input[type=date],
+.application input[type=time],
+.application input[type=search],
+.application select,
+input[type=text],
+input[type=number],
+input[type=password],
+input[type=datetime-local],
+input[type=time],
+input[type=search],
+input[type=date],
+div[contenteditable],
+textarea {
+  background: rgba(0, 0, 0, 0.5);
+  color: rgb(0, 229, 255);
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 0;
+}
+
+*[contenteditable] * {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+select {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgb(0, 229, 255);
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 0;
+}
+
+input[type=text]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=datetime-local]:focus,
+input[type=search]:focus,
+textarea:focus,
+input:focus,
+div[contenteditable]:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgb(34, 80, 120);
+}
+
+input[type=search]::placeholder {
+  color: rgb(175, 173, 160);
+}
+
+input[type=checkbox] {
+  vertical-align: middle;
+  align-self: center;
+}
+
+label.checkbox > input[type=checkbox] {
+  vertical-align: baseline;
+}
+
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+img {
+  border: none;
+  max-width: 100%;
+}
+
+/*** Firebox Number Box Fix ***/
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+aside#tooltip.actor__info-concept--tooltip {
+  text-align: left;
+}
+
+.zaibatsu.sheet {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.zaibatsu.sheet .window-resizable-handle {
+  z-index: 2;
+}
+.zaibatsu.sheet .window-header {
+  z-index: 100;
+  margin-top: 8px;
+}
+.zaibatsu.sheet .window-header .window-title {
+  margin-left: 3%;
+}
+.zaibatsu.sheet .window-header .header-button.control.close {
+  margin-right: 5%;
+}
+.zaibatsu.sheet .window-header .header-button.control.configure-token {
+  margin-right: 6%;
+}
+.zaibatsu.sheet section {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.zaibatsu.sheet header {
+  padding-left: 3%;
+  line-height: 1ch;
+  flex-basis: 3%;
+  align-items: center;
+  border: none;
+  color: rgb(240, 240, 224);
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0);
+}
+.zaibatsu.sheet section,
+.zaibatsu.sheet form {
+  height: 100%;
+  width: 100%;
+}
+.zaibatsu.sheet .actor-sheet__aside-photo {
+  background: rgb(41, 170, 225);
+  clip-path: polygon(98.5% 100%, 99.1% 8.6%, 92.5% 1.6%, 12.8% 2%, 6.1% 9.7%, 6% 100%);
+}
+.zaibatsu.sheet .actor-sheet__aside-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: polygon(97.5% 99%, 98.1% 9.6%, 91.5% 2.6%, 13.8% 2.7%, 7.1% 9.7%, 7% 99%);
+}
+.zaibatsu.sheet .actor-sheet__aside-info,
+.zaibatsu.sheet .actor-sheet__aside-characteristics {
+  padding-left: 30px;
+  padding-right: 15px;
+}
+.zaibatsu.sheet .actor__info--group {
+  display: flex;
+}
+.zaibatsu.sheet .actor__info--group span {
+  display: flex;
+  align-items: center;
+}
+.zaibatsu.sheet .actor__characteristics {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 50%);
+  overflow: hidden;
+}
+.zaibatsu.sheet .actor__characteristics-stat {
+  position: relative;
+  padding: 10px;
+  text-align: center;
+}
+.zaibatsu.sheet .actor__characteristics-stat input {
+  box-shadow: none;
+  background: none;
+  position: absolute;
+  width: 40px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.zaibatsu.sheet .actor__characteristics-stat .actor__characteristics-stat--ability {
+  top: 36%;
+  left: 14%;
+}
+.zaibatsu.sheet .actor__characteristics-stat .actor__characteristics-stat--modifier {
+  top: 36%;
+  right: 14%;
+}
+.zaibatsu.sheet .actor__characteristics-stat .actor__characteristics-stat--damage {
+  bottom: 11%;
+  left: 29%;
+  font-size: 0.8rem;
+}
+.zaibatsu.sheet.actor .actor-sheet__aside-photo,
+.zaibatsu.sheet.actor .actor-sheet__aside-name,
+.zaibatsu.sheet.actor .actor-sheet__aside-info,
+.zaibatsu.sheet.actor .actor-sheet__main-navigation,
+.zaibatsu.sheet.actor .actor-sheet__main-body,
+.zaibatsu.sheet.actor .actor-sheet__aside-characteristics {
+  z-index: 1;
+}
+.zaibatsu.sheet.actor .actor-sheet__aside-photo {
+  grid-area: actor-photo;
+}
+.zaibatsu.sheet.actor .actor-sheet__aside-name {
+  grid-area: actor-name;
+}
+.zaibatsu.sheet.actor .actor-sheet__aside-info {
+  grid-area: actor-info;
+}
+.zaibatsu.sheet.actor .actor-sheet__main-navigation {
+  grid-area: sheet-navigation;
+}
+.zaibatsu.sheet.actor .actor-sheet__main-body {
+  grid-area: sheet-body;
+}
+.zaibatsu.sheet.actor .actor-sheet__aside-characteristics {
+  grid-area: actor-characteristics;
+}
+.zaibatsu.sheet.actor .actor-sheet-form {
+  display: grid;
+  grid-template-columns: 37% 63%;
+  grid-template-areas: "actor-photo sheet-navigation" "actor-photo sheet-body" "actor-name sheet-body" "actor-info sheet-body" "actor-characteristics sheet-body";
+  justify-content: space-between;
+  grid-template-rows: 5% 42% 4.5% 20.7% 24% 3.8%;
+  width: 100%;
+  width: -moz-available;
+  width: -webkit-fill-available;
+}
+.zaibatsu.sheet.actor .actor-overlay {
+  position: absolute;
+  pointer-events: none;
+  width: 37%;
+  object-fit: cover;
+  height: 96%;
+  overflow: hidden;
+  top: 4%;
+  left: 0.7%;
+  aspect-ratio: auto;
+}
+.zaibatsu.sheet.actor .actor-interface-bg {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 0;
+  object-fit: fill;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  aspect-ratio: auto;
+}
+.zaibatsu.sheet.actor .actor-sheet__aside-name {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  display: block;
+}
+.zaibatsu.sheet.actor .actor__info-concept select {
+  width: 100%;
+}
+
+@font-face {
+  font-family: "SynteticAsrocuus";
+  src: url("../fonts/SynteticAsrocuus.otf") format("opentype");
+}
+body,
+button {
+  font-family: "SynteticAsrocuus", monospace;
+  letter-spacing: 1px;
+}
+
+body {
+  font-size: 16px;
+  color: rgb(41, 170, 225);
+}
+
+.window-app button {
+  color: rgb(175, 173, 160);
+}

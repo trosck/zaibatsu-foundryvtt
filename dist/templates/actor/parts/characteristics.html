@@ -1,0 +1,40 @@
+<div class="actor__characteristics">
+  {{#each system.characteristics as |char|}}
+  <div
+    class="actor__characteristics-stat {{char.key}}"
+    data-characteristic="{{char.key}}"
+  >
+    <span
+      class="actor__characteristics-stat--name"
+      data-tooltip='{{ localizeCharacteristic char.key "desc" }}'
+    >
+      {{ localizeCharacteristic char.key "short" }}
+    </span>
+    {{> (template "actor/icons/svg-characteristic-bg.html")}}
+    <input
+      class="actor__characteristics-stat--ability"
+      type="number"
+      min="0"
+      name="actor.characteristics.{{@key}}.value"
+      value="{{char.value}}"
+      data-dtype="Number"
+    />
+    <input
+      class="actor__characteristics-stat--modifier"
+      readonly
+      type="number"
+      value="0"
+    />
+    <input
+      class="actor__characteristics-stat--damage"
+      type="number"
+      max="{{char.value}}"
+      min="0"
+      name="actor.characteristics.{{char.key}}.damage"
+      value="{{char.damage}}"
+      placeholder="0"
+      data-dtype="Number"
+    />
+  </div>
+  {{/each}}
+</div>

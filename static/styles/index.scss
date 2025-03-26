@@ -1,0 +1,23 @@
+@use "colors";
+@use "base";
+@use "sheet";
+
+@font-face {
+  font-family: "SynteticAsrocuus";
+  src: url("../fonts/SynteticAsrocuus.otf") format("opentype");
+}
+
+body,
+button {
+  font-family: "SynteticAsrocuus", monospace;
+  letter-spacing: 1px;
+}
+
+body {
+  font-size: 16px;
+  color: colors.$default-color;
+}
+
+.window-app button {
+  color: colors.$form-light;
+}

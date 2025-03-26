@@ -1,0 +1,135 @@
+@use "colors";
+
+.window-content,
+.window-app .window-content,
+.app-content,
+section.app-content,
+section.window-app,
+section.window-content {
+  background-attachment: fixed;
+  background-image: url("../assets/images/default/background.jpg");
+  background-repeat: repeat-x;
+  font-family: inherit;
+  color: colors.$default-color;
+  --color-scrollbar: colors.$default-color;
+  --color-scrollbar-border: colors.$header-border;
+}
+
+.app {
+  background-image: url("../assets/images/default/background.jpg");
+  background-repeat: repeat;
+  border-radius: 5px;
+  box-shadow: 0 0 20px colors.$item-active;
+  color: colors.$app-color;
+  border: 1px solid colors.$header-border;
+}
+
+p span,
+p {
+  background-color: transparent;
+  font-family: inherit;
+}
+.application input[type="text"],
+.application input[type="number"],
+.application input[type="password"],
+.application input[type="date"],
+.application input[type="time"],
+.application input[type="search"],
+.application select,
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="datetime-local"],
+input[type="time"],
+input[type="search"],
+input[type="date"],
+div[contenteditable],
+textarea {
+  background: colors.$background-semi-opaque;
+  color: colors.$light-color;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  border: 1px solid colors.$background-transparent;
+  border-radius: 0;
+}
+
+*[contenteditable] * {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+select {
+  background-color: colors.$background-semi-opaque;
+  color: colors.$light-color;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  border: 1px solid colors.$background-opaque;
+  border-radius: 0;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="datetime-local"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+input:focus,
+div[contenteditable]:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 10px colors.$header-border;
+}
+
+input[type="search"]::placeholder {
+  color: colors.$form-light;
+}
+
+input[type="checkbox"] {
+  vertical-align: middle;
+  align-self: center;
+}
+
+label.checkbox > input[type="checkbox"] {
+  vertical-align: baseline;
+}
+
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+img {
+  border: none;
+  max-width: 100%;
+}
+
+/*** Firebox Number Box Fix ***/
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}

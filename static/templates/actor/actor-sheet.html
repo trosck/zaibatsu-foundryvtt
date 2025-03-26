@@ -1,0 +1,43 @@
+<form class="actor-sheet-form" autocomplete="off">
+  {{> (template "actor/icons/svg-actor-interface-bg.html") }} {{> (template
+  "actor/icons/svg-actor-overlay.html") }}
+
+  <div class="actor-sheet__aside-photo">
+    <img class="actor-sheet__aside-img" src="{{actor.img}}" />
+  </div>
+
+  <div class="actor-sheet__aside-name">
+    <input
+      name="name"
+      type="text"
+      value="{{actor.name}}"
+      placeholder='{{localize "sheet.name"}}'
+    />
+  </div>
+
+  <div class="actor-sheet__aside-info">
+    {{> (template "actor/parts/info.html") }}
+  </div>
+
+  <div class="actor-sheet__aside-characteristics">
+    {{> (template "actor/parts/characteristics.html") }}
+  </div>
+
+  <div class="actor-sheet__main-navigation sheet__navigation">
+    <nav class="sheet__navigation-container" data-group="primary">
+      <a class="sheet__navigation-tab" data-tab="skills">
+        {{ localize "sheet.actor.tabs.skills" }}
+      </a>
+    </nav>
+  </div>
+
+  <div class="actor-sheet__main-body">
+    <div
+      class="actor-sheet__main-body--content skills"
+      data-group="primary"
+      data-tab="skills"
+    >
+      {{> (template "actor/tabs/tab-skills.html") }}
+    </div>
+  </div>
+</form>
