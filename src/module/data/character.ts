@@ -82,12 +82,12 @@ export class CharacterData extends BaseData {
     });
 
     schema.characteristics = new SchemaField({
-      strength: makeCharacteristicField(CharacteristicEnum.str),
-      dexterity: makeCharacteristicField(CharacteristicEnum.dex),
-      endurance: makeCharacteristicField(CharacteristicEnum.end),
-      intelligence: makeCharacteristicField(CharacteristicEnum.int),
-      education: makeCharacteristicField(CharacteristicEnum.edu),
-      social: makeCharacteristicField(CharacteristicEnum.soc),
+      [CharacteristicEnum.str]: makeCharacteristicField(),
+      [CharacteristicEnum.dex]: makeCharacteristicField(),
+      [CharacteristicEnum.end]: makeCharacteristicField(),
+      [CharacteristicEnum.int]: makeCharacteristicField(),
+      [CharacteristicEnum.edu]: makeCharacteristicField(),
+      [CharacteristicEnum.soc]: makeCharacteristicField(),
     });
 
     schema.shock = new NumberField({
@@ -96,11 +96,6 @@ export class CharacterData extends BaseData {
       integer: true,
       initial: 0,
       min: 0,
-    });
-
-    const SkillSchema = new SchemaField({
-      id: new StringField({ required: true }),
-      level: new NumberField({ required: true }),
     });
 
     schema.skills = new ObjectField({
@@ -121,21 +116,14 @@ export class CharacterData extends BaseData {
   }
 }
 
-function makeCharacteristicField(key: Characteristic) {
+function makeCharacteristicField() {
   return new SchemaField({
-    key: new StringField({
-      required: true,
-      blank: true,
-      initial: key,
-      trim: true,
-    }),
-
     value: new NumberField({
       required: true,
       nullable: false,
       integer: true,
       initial: 1,
-      min: 1,
+      min: 0,
       max: 15,
     }),
 
@@ -145,6 +133,7 @@ function makeCharacteristicField(key: Characteristic) {
       integer: true,
       initial: 0,
       min: 0,
+      max: 15,
     }),
   });
 }

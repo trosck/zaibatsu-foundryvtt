@@ -1,14 +1,14 @@
 <div class="actor__characteristics">
   {{#each system.characteristics as |char|}}
   <div
-    class="actor__characteristics-stat {{char.key}}"
-    data-characteristic="{{char.key}}"
+    class="actor__characteristics-stat {{@key}}"
+    data-characteristic="{{@key}}"
   >
     <span
       class="actor__characteristics-stat--name"
-      data-tooltip='{{ localizeCharacteristic char.key "desc" }}'
+      data-tooltip='{{ localizeCharacteristic @key "desc" }}'
     >
-      {{ localizeCharacteristic char.key "short" }}
+      {{ localizeCharacteristic @key "short" }}
     </span>
     {{> (template "actor/icons/svg-characteristic-bg.html")}}
     <input
