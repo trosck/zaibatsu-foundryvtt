@@ -13,16 +13,15 @@ export class ZaibatsuActor extends Actor {
 
     const source = {
       "prototypeToken.displayName": CONST.TOKEN_DISPLAY_MODES.ALWAYS,
+      "prototypeToken.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER,
     };
 
     if (this.type === ZAIBATSU.ACTOR_TYPE.AGENT) {
       source.img = assetsPath("images", "default", "agent.png");
-      source["prototypeToken.displayBars"] = CONST.TOKEN_DISPLAY_MODES.ALWAYS;
     }
 
     if (this.type === ZAIBATSU.ACTOR_TYPE.NPC) {
       source.img = assetsPath("images", "default", "npc.png");
-      source["prototypeToken.displayBars"] = CONST.TOKEN_DISPLAY_MODES.OWNER;
     }
 
     await this.updateSource(source);
