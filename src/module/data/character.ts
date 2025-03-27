@@ -30,10 +30,28 @@ export class CharacterData extends BaseData {
       choices: ZAIBATSU.CONCEPTS,
     });
 
-    schema.boss = new StringField({
-      required: true,
-      trim: true,
-      blank: true,
+    schema.employer = new SchemaField({
+      name: new StringField({
+        required: true,
+        trim: true,
+        blank: true,
+      }),
+      rank: new NumberField({
+        required: true,
+        nullable: false,
+        integer: true,
+        initial: 1,
+        min: 0,
+        step: 1,
+      }),
+      experience: new NumberField({
+        required: true,
+        nullable: false,
+        integer: true,
+        initial: 0,
+        min: 0,
+        step: 1,
+      }),
     });
 
     schema.armor = new SchemaField({
