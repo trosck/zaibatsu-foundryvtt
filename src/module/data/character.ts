@@ -113,6 +113,10 @@ export class CharacterData extends BaseData {
       ],
     });
 
+    schema.retrogenicAdaptations = new ArrayField(
+      new StringField({ required: true }),
+    );
+
     return schema;
   }
 }

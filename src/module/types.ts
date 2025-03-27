@@ -10,3 +10,9 @@ export type Characteristic = (typeof ZAIBATSU.CHARACTERISTICS)[number];
 export const CharacteristicEnum = dictFromArray<Characteristic>(
   ZAIBATSU.CHARACTERISTICS,
 );
+
+type RetrogenicAdaptation = keyof typeof ZAIBATSU.RETROGENICS;
+
+export const RetrogenicAdaptationEnum = dictFromArray<RetrogenicAdaptation>(
+  Object.keys(ZAIBATSU.RETROGENICS),
+);
