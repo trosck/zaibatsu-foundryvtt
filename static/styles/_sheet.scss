@@ -171,6 +171,22 @@ aside#tooltip.actor__info-concept--tooltip {
     margin: 15px 0;
   }
 
+  .actor-sheet__main-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sheet__navigation-tab:not(:last-child) {
+    margin-right: 10px;
+    border-right: 2.5px solid colors.$default-color;
+    padding-right: 10px;
+  }
+
+  .sheet__navigation-tab.active {
+    color: colors.$light-color;
+  }
+
   &.actor {
     .actor-sheet__aside-photo,
     .actor-sheet__aside-name,
