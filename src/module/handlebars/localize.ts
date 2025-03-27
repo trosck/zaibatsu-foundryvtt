@@ -15,4 +15,8 @@ export function registerLocalizeHelpers() {
   Handlebars.registerHelper("localizeSkill", (id: string, key: string) => {
     return game.i18n.localize(`skills.${id}.${key}`);
   });
+
+  Handlebars.registerHelper("localizeRetrogenic", (id: string, key: string) => {
+    return game.i18n.localize(`retrogenics.${id}.${key}`);
+  });
 }

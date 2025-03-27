@@ -1,9 +1,12 @@
 <div class="skill-container">
-  <div class="skill-grid skill-header"></div>
   {{#each system.skills as |skill|}} {{> (template "actor/parts/skill.html")
   skill}} {{/each}}
 </div>
 
-<div class="skill-container">
-  <div class="skill-grid skill-header"></div>
+<div class="skill-container retrogenics">
+  <h2 class="retrogenics__name">
+    {{ localize "sheet.RetrogenicAdaptations" }}
+  </h2>
+  {{#each system.retrogenicAdaptations as |retrogenic|}} {{> (template
+  "actor/parts/retrogenic.html") retrogenic }} {{/each}}
 </div>

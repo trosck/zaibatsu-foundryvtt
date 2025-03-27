@@ -32,6 +32,7 @@
     }
   },
   "sheet": {
+    "RetrogenicAdaptations": "Ретрогенные адаптации",
     "name": "Имя",
     "actor": {
       "info": {

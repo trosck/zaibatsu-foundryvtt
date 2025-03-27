@@ -144,6 +144,33 @@ aside#tooltip.actor__info-concept--tooltip {
     }
   }
 
+  .skill-item {
+    margin-bottom: 10px;
+  }
+
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+
+    .skill-item__level {
+      text-align: right;
+    }
+  }
+
+  .actor-sheet__main-body {
+    overflow: auto;
+    padding: 20px 25px 20px 20px;
+  }
+
+  .retrogenics__name,
+  .retrogenic-item__name {
+    border-color: colors.$default-color;
+  }
+
+  .retrogenic-item {
+    margin: 15px 0;
+  }
+
   &.actor {
     .actor-sheet__aside-photo,
     .actor-sheet__aside-name,

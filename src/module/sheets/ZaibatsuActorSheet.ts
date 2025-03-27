@@ -10,7 +10,7 @@ export class ZaibatsuActorSheet extends ActorSheet {
       resizable: false,
       classes: ["zaibatsu", "sheet", "actor"],
       template: templatesPath("actor", "sheet.html"),
-      scrollY: [".skills"],
+      scrollY: [".actor-sheet__main-body--content"],
       tabs: [
         {
           navSelector: ".sheet__navigation-container",
