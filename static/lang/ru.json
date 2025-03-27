@@ -39,9 +39,11 @@
         "age": "Возраст",
         "gender": "Пол",
         "concept": "Концепция",
-        "boss": "Босс",
+        "employer": "Босс",
         "armor": "Броня",
-        "weight": "Вес"
+        "weight": "Вес",
+        "rank": "Ранг",
+        "experience": "Опыт"
       },
       "tabs": {
         "skills": "Навыки"

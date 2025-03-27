@@ -43,10 +43,28 @@
 
 <div class="actor__info--group">
   <span class="actor__info-boss"
-    >{{localize "sheet.actor.info.boss"}}:<input
+    >{{localize "sheet.actor.info.employer"}}:<input
       type="text"
       name="system.employer.name"
       value="{{system.employer.name}}"
+      onClick="this.select();"
+  /></span>
+</div>
+
+<div class="actor__info--group">
+  <span class="actor__info-boss"
+    >{{localize "sheet.actor.info.rank"}}:<input
+      type="number"
+      name="system.employer.rank"
+      value="{{system.employer.rank}}"
+      onClick="this.select();"
+  /></span>
+
+  <span class="actor__info-boss"
+    >{{localize "sheet.actor.info.experience"}}:<input
+      type="number"
+      name="system.employer.experience"
+      value="{{system.employer.experience}}"
       onClick="this.select();"
   /></span>
 </div>
