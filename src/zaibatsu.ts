@@ -1,7 +1,7 @@
 import { ZAIBATSU } from "./module/config";
 import { CharacterData } from "./module/data/character";
 import { ZaibatsuActor } from "./module/entities/ZaibatsuActor";
-import registerHandlebarsHelpers from "./module/handlebars/handlebars";
+import registerHandlebarsHelpers from "./module/handlebars";
 import { ZaibatsuActorSheet } from "./module/sheets/ZaibatsuActorSheet";
 import { joinPath } from "./module/utils/joinPath";
 import { useCss } from "./module/utils/useCss";
