@@ -1,8 +1,10 @@
 // @ts-nocheck
 
+import { templatesPath } from "../utils/path";
+
 export function registerCommonHelpers() {
   Handlebars.registerHelper("template", (path: string) => {
-    return joinPath(ZAIBATSU.SYSTEM_FOLDER, "templates", path);
+    return templatesPath(path);
   });
 
   Handlebars.registerHelper("concat", (...args: string[]) => {
