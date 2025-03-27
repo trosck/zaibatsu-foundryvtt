@@ -98,23 +98,20 @@ export class CharacterData extends BaseData {
       min: 0,
     });
 
-    const SkillSchema = new SchemaField(
-      {
-        id: new StringField({ required: true }),
-        level: new NumberField({ required: true }),
-      },
-      {
-        initial: [
-          initSkill(SkillEnum.Bujutsu),
-          initSkill(SkillEnum.Karate),
-          initSkill(SkillEnum.Jujutsu),
-          initSkill(SkillEnum.Shooting),
-          initSkill(SkillEnum.GroundTransport),
-        ],
-      },
-    );
+    const SkillSchema = new SchemaField({
+      id: new StringField({ required: true }),
+      level: new NumberField({ required: true }),
+    });
 
-    schema.skills = new ArrayField(SkillSchema);
+    schema.skills = new ArrayField(SkillSchema, {
+      initial: [
+        initSkill(SkillEnum.Bujutsu),
+        initSkill(SkillEnum.Karate),
+        initSkill(SkillEnum.Jujutsu),
+        initSkill(SkillEnum.Shooting),
+        initSkill(SkillEnum.GroundTransport),
+      ],
+    });
 
     return schema;
   }
