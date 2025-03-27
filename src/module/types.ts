@@ -1,13 +1,12 @@
 import { ZAIBATSU } from "./config";
+import { dictFromArray } from "./utils/dictFromArray";
 
-export type SKill = (typeof ZAIBATSU.SKILLS)[number];
+export type Skill = (typeof ZAIBATSU.SKILLS)[number];
+
+export const SkillEnum = dictFromArray<Skill>(ZAIBATSU.SKILLS);
 
 export type Characteristic = (typeof ZAIBATSU.CHARACTERISTICS)[number];
 
-export const CharacteristicEnum = ZAIBATSU.CHARACTERISTICS.reduce(
-  (acc, key) => {
-    acc[key] = key;
-    return acc;
-  },
-  {} as Record<Characteristic, Characteristic>,
+export const CharacteristicEnum = dictFromArray<Characteristic>(
+  ZAIBATSU.CHARACTERISTICS,
 );
