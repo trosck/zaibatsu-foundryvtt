@@ -9,7 +9,7 @@ export class ZaibatsuActorSheet extends ActorSheet {
       height: 780,
       resizable: false,
       classes: ["zaibatsu", "sheet", "actor"],
-      template: templatesPath("actor", "actor-sheet.html"),
+      template: templatesPath("actor", "sheet.html"),
       scrollY: [".skills"],
       tabs: [
         {
