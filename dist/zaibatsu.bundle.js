@@ -1,4 +1,4 @@
-console.log("build 23:15:57 GMT+0300 (Moscow Standard Time)");
+console.log("build 00:05:57 GMT+0300 (Moscow Standard Time)");
         const handlebarsTemplates = ["systems/zaibatsu-unofficial/templates/actor/actor-sheet.html","systems/zaibatsu-unofficial/templates/actor/tabs/tab-skills.html","systems/zaibatsu-unofficial/templates/actor/parts/info.html","systems/zaibatsu-unofficial/templates/actor/parts/characteristics.html","systems/zaibatsu-unofficial/templates/actor/icons/svg-characteristic-bg.html","systems/zaibatsu-unofficial/templates/actor/icons/svg-actor-overlay.html","systems/zaibatsu-unofficial/templates/actor/icons/svg-actor-interface-bg.html"];
       
 
@@ -282,6 +282,9 @@ class ZaibatsuActorSheet extends ActorSheet {
     context.system = context.document.system;
     context.CONFIG = CONFIG;
     return context;
+  }
+  async zaibatsu_updateCharacteristic(...args) {
+    console.log(...args);
   }
 }
 

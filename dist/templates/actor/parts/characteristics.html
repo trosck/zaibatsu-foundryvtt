@@ -13,9 +13,8 @@
     {{> (template "actor/icons/svg-characteristic-bg.html")}}
     <input
       class="actor__characteristics-stat--ability"
-      type="number"
-      min="0"
-      name="actor.characteristics.{{@key}}.value"
+      type="text"
+      name="system.characteristics.{{@key}}.value"
       value="{{char.value}}"
       data-dtype="Number"
     />
@@ -27,12 +26,9 @@
     />
     <input
       class="actor__characteristics-stat--damage"
-      type="number"
-      max="{{char.value}}"
-      min="0"
-      name="actor.characteristics.{{char.key}}.damage"
+      type="text"
+      name="system.characteristics.{{@key}}.damage"
       value="{{char.damage}}"
-      placeholder="0"
       data-dtype="Number"
     />
   </div>

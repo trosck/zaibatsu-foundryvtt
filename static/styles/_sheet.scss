@@ -10,6 +10,11 @@ aside#tooltip.actor__info-concept--tooltip {
   flex-wrap: nowrap;
   justify-content: flex-start;
 
+  input {
+    box-shadow: none;
+    background: none;
+  }
+
   .window-resizable-handle {
     z-index: 2;
   }
@@ -110,13 +115,16 @@ aside#tooltip.actor__info-concept--tooltip {
     text-align: center;
 
     input {
-      box-shadow: none;
-      background: none;
       position: absolute;
       width: 40px;
       margin: 0;
       padding: 0;
       border: 0;
+    }
+
+    .actor__characteristics-stat--name {
+      text-transform: uppercase;
+      font-size: 0.8rem;
     }
 
     .actor__characteristics-stat--ability {

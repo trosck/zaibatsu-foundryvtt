@@ -142,6 +142,10 @@ aside#tooltip.actor__info-concept--tooltip {
   flex-wrap: nowrap;
   justify-content: flex-start;
 }
+.zaibatsu.sheet input {
+  box-shadow: none;
+  background: none;
+}
 .zaibatsu.sheet .window-resizable-handle {
   z-index: 2;
 }
@@ -214,13 +218,15 @@ aside#tooltip.actor__info-concept--tooltip {
   text-align: center;
 }
 .zaibatsu.sheet .actor__characteristics-stat input {
-  box-shadow: none;
-  background: none;
   position: absolute;
   width: 40px;
   margin: 0;
   padding: 0;
   border: 0;
+}
+.zaibatsu.sheet .actor__characteristics-stat .actor__characteristics-stat--name {
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }
 .zaibatsu.sheet .actor__characteristics-stat .actor__characteristics-stat--ability {
   top: 36%;
