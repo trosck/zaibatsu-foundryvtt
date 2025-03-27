@@ -1,8 +1,9 @@
 import { ZAIBATSU } from "../config";
-import { Characteristic, CharacteristicEnum } from "../types";
+import { Characteristic, CharacteristicEnum, SkillEnum } from "../types";
 import { BaseData } from "./base";
 
-const { StringField, SchemaField, NumberField } = foundry.data.fields;
+const { StringField, SchemaField, NumberField, ArrayField } =
+  foundry.data.fields;
 
 export class CharacterData extends BaseData {
   static defineSchema() {
@@ -97,10 +98,33 @@ export class CharacterData extends BaseData {
       min: 0,
     });
 
-    schema.skills;
+    const SkillSchema = new SchemaField(
+      {
+        id: new StringField({ required: true }),
+        level: new NumberField({ required: true }),
+      },
+      {
+        initial: [
+          initSkill(SkillEnum.Bujutsu),
+          initSkill(SkillEnum.Karate),
+          initSkill(SkillEnum.Jujutsu),
+          initSkill(SkillEnum.Shooting),
+          initSkill(SkillEnum.GroundTransport),
+        ],
+      },
+    );
+
+    schema.skills = new ArrayField(SkillSchema);
 
     return schema;
   }
+}
+
+function initSkill(skill: string) {
+  return {
+    id: skill,
+    level: 0,
+  };
 }
 
 function makeCharacteristicField(key: Characteristic) {
