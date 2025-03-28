@@ -1,1 +1,0 @@
-export class BaseData extends foundry.abstract.TypeDataModel<any, any> {}

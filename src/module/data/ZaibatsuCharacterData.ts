@@ -1,11 +1,11 @@
 import { ZAIBATSU } from "../config";
-import { Characteristic, CharacteristicEnum, SkillEnum } from "../types";
-import { BaseData } from "./base";
+import { CharacteristicEnum, SkillEnum } from "../types";
+import { ZaibatsuBaseData } from "./ZaibatsuBaseData";
 
 const { StringField, SchemaField, NumberField, ArrayField, ObjectField } =
   foundry.data.fields;
 
-export class CharacterData extends BaseData {
+export class ZaibatsuCharacterData extends ZaibatsuBaseData {
   static defineSchema() {
     const schema: any = {};
 
@@ -35,6 +35,7 @@ export class CharacterData extends BaseData {
         required: true,
         trim: true,
         blank: true,
+        initial: "",
       }),
       rank: new NumberField({
         required: true,
@@ -108,14 +109,6 @@ export class CharacterData extends BaseData {
       [CharacteristicEnum.soc]: makeCharacteristicField(),
     });
 
-    schema.shock = new NumberField({
-      required: true,
-      nullable: false,
-      integer: true,
-      initial: 0,
-      min: 0,
-    });
-
     schema.skills = new ObjectField({
       initial: {
         [SkillEnum.Karate]: 0,
@@ -124,6 +117,13 @@ export class CharacterData extends BaseData {
         [SkillEnum.Shooting]: 0,
         [SkillEnum.GroundTransport]: 0,
       },
+    });
+
+    schema.retrogenicPoints = new NumberField({
+      required: true,
+      nullable: false,
+      integer: true,
+      initial: 0,
     });
 
     schema.retrogenicAdaptations = new ArrayField(
