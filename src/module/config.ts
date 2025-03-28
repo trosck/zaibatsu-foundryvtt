@@ -56,6 +56,56 @@ const SKILLS = <const>[
   "Investigation",
 ];
 
+const EQUIPPED_STATES = <const>["backpack", "equipped", "vehicle"];
+
+const WEAPON_RANGES = <const>{
+  melee: {
+    effective: 2,
+    long: 0,
+    extreme: 0,
+  },
+  throwing: {
+    effective: 5,
+    long: 20,
+    extreme: 40,
+  },
+  pistol: {
+    effective: 10,
+    long: 40,
+    extreme: 80,
+  },
+  rifle: {
+    effective: 100,
+    long: 400,
+    extreme: 800,
+  },
+  shotgun: {
+    effective: 10,
+    long: 40,
+    extreme: 80,
+  },
+  assaultRifle: {
+    effective: 50,
+    long: 200,
+    extreme: 400,
+  },
+  rocket: {
+    effective: 100,
+    long: 400,
+    extreme: 800,
+  },
+};
+
+const WEAPON_TYPES = <const>[
+  "melee",
+  "throwing",
+  "pistol",
+  "rifle",
+  "shotgun",
+  "assaultRifle",
+  "rocket",
+];
+
 const RETROGENICS = <const>{
   Ambidextrous: 10,
   Amphibian: 5,
@@ -92,8 +142,11 @@ const RETROGENICS = <const>{
 const CHARACTERISTICS = <const>["str", "dex", "end", "int", "edu", "soc"];
 
 export const ZAIBATSU = {
+  WEAPON_RANGES,
+  WEAPON_TYPES,
   SYSTEM_NAME,
   RETROGENICS,
+  EQUIPPED_STATES,
   CHARACTERISTICS,
   SYSTEM_FOLDER,
   ACTOR_TYPE,
