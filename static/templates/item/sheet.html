@@ -1,0 +1,48 @@
+<form class="item-sheet-form" autocomplete="off">
+  {{ log this }}
+
+  <div class="item-sheet__name">
+    <label for="item.name">{{localize "sheet.item.name"}}</label>
+    <input
+      name="item.name"
+      type="text"
+      value="{{item.name}}"
+      class="item-sheet__name-input"
+      placeholder='{{localize "sheet.item.name"}}'
+    />
+  </div>
+
+  <div class="item-sheet__info">
+    <img class="item-sheet__info-img" src="{{item.img}}" />
+    <div
+      contenteditable="true"
+      data-edit="system.description"
+      class="item-sheet__info-description"
+    >
+      {{{system.description}}}
+    </div>
+  </div>
+
+  <div class="item-sheet__group">
+    <div class="item-sheet__group-item">
+      <label for="system.weight">{{localize "sheet.item.weight"}}</label>
+      <input
+        name="system.weight"
+        type="text"
+        value="{{system.weight}}"
+        class="item-sheet__name-input"
+        placeholder='{{localize "sheet.item.weight"}}'
+      />
+    </div>
+    <div class="item-sheet__group-item">
+      <label for="system.price">{{localize "sheet.item.price"}}</label>
+      <input
+        name="system.price"
+        type="text"
+        value="{{system.price}}"
+        class="item-sheet__name-input"
+        placeholder='{{localize "sheet.item.price"}}'
+      />
+    </div>
+  </div>
+</form>
