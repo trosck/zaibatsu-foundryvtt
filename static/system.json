@@ -22,6 +22,9 @@
     "Actor": {
       "agent": {},
       "npc": {}
+    },
+    "Item": {
+      "weapon": {}
     }
   },
   "styles": [
@@ -36,7 +39,18 @@
   },
   "primaryTokenAttribute": "characteristics.endurance",
   "secondaryTokenAttribute": "shock",
-  "url": "https://your/hosted/system/repo/",
-  "manifest": "https://your/hosted/system/repo/system.json",
-  "download": "https://your/packaged/download/archive.zip"
+  "flags": {
+    "hotReload": {
+      "extensions": [
+        "css",
+        "html",
+        "json"
+      ],
+      "paths": [
+        "templates",
+        "lang",
+        "styles"
+      ]
+    }
+  }
 }
