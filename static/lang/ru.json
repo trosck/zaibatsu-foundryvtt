@@ -33,8 +33,8 @@
   },
   "sheet": {
     "RetrogenicAdaptations": "Ретрогенные адаптации",
-    "name": "Имя",
     "actor": {
+      "name": "Имя",
       "info": {
         "age": "Возраст",
         "gender": "Пол",
@@ -48,6 +48,11 @@
       "tabs": {
         "skills": "Навыки"
       }
+    },
+    "item": {
+      "name": "Название предмета",
+      "weight": "Вес",
+      "price": "Цена"
     }
   },
   "concepts": {
