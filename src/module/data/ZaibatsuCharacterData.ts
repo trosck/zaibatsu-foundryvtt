@@ -4,11 +4,11 @@ import { ZaibatsuBaseData } from "./ZaibatsuBaseData";
 
 const { StringField, SchemaField, NumberField, ArrayField, ObjectField } =
   foundry.data.fields;
-
 export class ZaibatsuCharacterData extends ZaibatsuBaseData {
   static defineSchema() {
     const schema: any = {};
 
+    // Character's age in years (must be positive integer)
     schema.age = new NumberField({
       required: true,
       nullable: false,
@@ -17,12 +17,14 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       min: 0,
     });
 
+    // Gender identity (free-form text field)
     schema.gender = new StringField({
       required: true,
       blank: true,
       trim: true,
     });
 
+    // Character concept/archetype from predefined list
     schema.concept = new StringField({
       required: true,
       trim: true,
@@ -30,6 +32,7 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       choices: ZAIBATSU.CONCEPTS,
     });
 
+    // Employer/organization details
     schema.employer = new SchemaField({
       name: new StringField({
         required: true,
@@ -55,6 +58,7 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       }),
     });
 
+    // Armor statistics (current value, max possible, and modifiers)
     schema.armor = new SchemaField({
       value: new NumberField({
         required: true,
@@ -81,6 +85,7 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       }),
     });
 
+    // Weight tracking (current vs max capacity)
     schema.weight = new SchemaField({
       value: new NumberField({
         required: true,
@@ -100,6 +105,7 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       }),
     });
 
+    // Core character attributes (STR, DEX, END, INT, EDU, SOC)
     schema.characteristics = new SchemaField({
       [CharacteristicEnum.str]: makeCharacteristicField(),
       [CharacteristicEnum.dex]: makeCharacteristicField(),
@@ -109,6 +115,7 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       [CharacteristicEnum.soc]: makeCharacteristicField(),
     });
 
+    // Skill proficiencies with initial values
     schema.skills = new ObjectField({
       initial: {
         [SkillEnum.Karate]: 0,
@@ -119,6 +126,7 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       },
     });
 
+    // Available points for retrogenic enhancements
     schema.retrogenicPoints = new NumberField({
       required: true,
       nullable: false,
@@ -126,6 +134,7 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       initial: 0,
     });
 
+    // List of active retrogenic adaptations
     schema.retrogenicAdaptations = new ArrayField(
       new StringField({ required: true }),
     );
@@ -134,6 +143,7 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
   }
 }
 
+// Factory for creating characteristic fields (value + damage tracking)
 function makeCharacteristicField() {
   return new SchemaField({
     value: new NumberField({
