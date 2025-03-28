@@ -1,0 +1,28 @@
+@use "colors";
+
+.zaibatsu.sheet.item {
+  .item-sheet-form {
+    padding: 1rem;
+
+    & > div:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .item-sheet__info {
+    display: grid;
+    column-gap: 1rem;
+    grid-template-columns: 100px auto;
+
+    .item-sheet__info-img {
+      width: 100px;
+      object-fit: contain;
+    }
+  }
+
+  .item-sheet__group {
+    display: grid;
+    column-gap: 1rem;
+    grid-auto-flow: column;
+  }
+}
