@@ -1,12 +1,15 @@
-import { ZAIBATSU } from "./module/config";
-import { CharacterData } from "./module/data/character";
-import { ZaibatsuActor } from "./module/entities/ZaibatsuActor";
 import registerHandlebarsHelpers from "./module/handlebars";
-import { ZaibatsuActorSheet } from "./module/sheets/ZaibatsuActorSheet";
+
+import { ZAIBATSU } from "./module/config";
 import { joinPath } from "./module/utils/joinPath";
 import { useCss } from "./module/utils/useCss";
 
-registerHandlebarsHelpers();
+import { ZaibatsuActor } from "./module/entities/ZaibatsuActor";
+import { ZaibatsuActorSheet } from "./module/sheets/ZaibatsuActorSheet";
+import { ZaibatsuWeaponData } from "./module/data/ZaibatsuItemData";
+import { ZaibatsuItemSheet } from "./module/sheets/ZaibatsuItemSheet";
+import { ZaibatsuItem } from "./module/entities/ZaibatsuItem";
+import { ZaibatsuCharacterData } from "./module/data/ZaibatsuCharacterData";
 
 Hooks.once("init", () => {
   // CONFIG.debug.hooks = true;
@@ -14,6 +17,15 @@ Hooks.once("init", () => {
   // @ts-ignore
   CONFIG.ZAIBATSU = ZAIBATSU;
 
+  // @ts-ignore
+  game[ZAIBATSU.SYSTEM_NAME] = {
+    ZaibatsuActor,
+    ZaibatsuItem,
+  };
+
+  /**
+   * Actors
+   */
   CONFIG.Actor.documentClass = ZaibatsuActor;
 
   Actors.unregisterSheet("core", ActorSheet);
@@ -30,12 +42,9 @@ Hooks.once("init", () => {
     makeDefault: false,
   });
 
-  /**
-   * Models
-   */
   Object.assign(CONFIG.Actor.dataModels, {
-    agent: CharacterData,
-    npc: CharacterData,
+    agent: ZaibatsuCharacterData,
+    npc: ZaibatsuCharacterData,
   });
 
   CONFIG.Actor.trackableAttributes = {
@@ -50,6 +59,23 @@ Hooks.once("init", () => {
       value: [],
     },
   };
+
+  /**
+   * Items
+   */
+  CONFIG.Item.documentClass = ZaibatsuItem;
+
+  Items.unregisterSheet("core", ItemSheet);
+
+  Items.registerSheet(ZAIBATSU.SYSTEM_NAME, ZaibatsuItemSheet, {
+    makeDefault: true,
+    label: "Item Sheet",
+  });
+
+  /* Load Schemas */
+  Object.assign(CONFIG.Item.dataModels, {
+    weapon: ZaibatsuWeaponData,
+  });
 
   CONFIG.fontDefinitions["SynteticAsrocuus"] = {
     editor: true,
@@ -66,4 +92,6 @@ Hooks.once("init", () => {
 
   // @ts-ignore - see rollup.config.js
   loadTemplates(handlebarsTemplates);
+
+  registerHandlebarsHelpers();
 });
