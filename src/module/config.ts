@@ -106,6 +106,8 @@ const WEAPON_TYPES = <const>[
   "rocket",
 ];
 
+const ITEM_TYPES = <const>["weapon"];
+
 const RETROGENICS = <const>{
   Ambidextrous: 10,
   Amphibian: 5,
@@ -150,6 +152,7 @@ export const ZAIBATSU = {
   CHARACTERISTICS,
   SYSTEM_FOLDER,
   ACTOR_TYPE,
+  ITEM_TYPES,
   CONCEPTS,
   SKILLS,
 };

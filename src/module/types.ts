@@ -32,3 +32,7 @@ export const WeaponEnum = dictFromArray<Weapon>(
 export type WeaponType = (typeof ZAIBATSU.WEAPON_TYPES)[number];
 
 export const WeaponTypeEnum = dictFromArray<WeaponType>(ZAIBATSU.WEAPON_TYPES);
+
+export type ItemType = (typeof ZAIBATSU.ITEM_TYPES)[number];
+
+export const ItemTypeEnum = dictFromArray<ItemType>(ZAIBATSU.ITEM_TYPES);
