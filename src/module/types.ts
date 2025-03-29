@@ -17,9 +17,11 @@ export const RetrogenicAdaptationEnum = dictFromArray<RetrogenicAdaptation>(
   Object.keys(ZAIBATSU.RETROGENICS),
 );
 
-export const EquippedStateEnum = dictFromArray<
-  (typeof ZAIBATSU.EQUIPPED_STATES)[number]
->(ZAIBATSU.EQUIPPED_STATES);
+export type EquippedState = (typeof ZAIBATSU.EQUIPPED_STATES)[number];
+
+export const EquippedStateEnum = dictFromArray<EquippedState>(
+  ZAIBATSU.EQUIPPED_STATES,
+);
 
 export type Weapon = keyof typeof ZAIBATSU.WEAPON_RANGES;
 
