@@ -28,3 +28,7 @@ export type Weapon = keyof typeof ZAIBATSU.WEAPON_RANGES;
 export const WeaponEnum = dictFromArray<Weapon>(
   Object.keys(ZAIBATSU.WEAPON_RANGES),
 );
+
+export type WeaponType = (typeof ZAIBATSU.WEAPON_TYPES)[number];
+
+export const WeaponTypeEnum = dictFromArray<WeaponType>(ZAIBATSU.WEAPON_TYPES);
