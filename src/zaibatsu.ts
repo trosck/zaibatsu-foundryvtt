@@ -10,6 +10,8 @@ import { ZaibatsuItemSheet } from "./module/sheets/ZaibatsuItemSheet";
 import { ZaibatsuItem } from "./module/entities/ZaibatsuItem";
 import { ZaibatsuCharacterData } from "./module/data/ZaibatsuCharacterData";
 import { ZaibatsuWeaponData } from "./module/data/ZaibatsuWeaponData";
+import { ItemTypeEnum } from "./module/types";
+import { ZaibatsuArmorData } from "./module/data/ZaibatsuArmorData";
 
 Hooks.once("init", () => {
   // CONFIG.debug.hooks = true;
@@ -74,7 +76,8 @@ Hooks.once("init", () => {
 
   /* Load Schemas */
   Object.assign(CONFIG.Item.dataModels, {
-    weapon: ZaibatsuWeaponData,
+    [ItemTypeEnum.weapon]: ZaibatsuWeaponData,
+    [ItemTypeEnum.armor]: ZaibatsuArmorData,
   });
 
   CONFIG.fontDefinitions["SynteticAsrocuus"] = {
