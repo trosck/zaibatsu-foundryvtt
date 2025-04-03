@@ -21,12 +21,6 @@ class ZaibatsuBaseItemData extends ZaibatsuBaseData {
      */
     schema.price = new NumberField({ initial: 0, min: 0 });
 
-    /**
-     * Weight in kilograms
-     * @type {NumberField}
-     */
-    schema.weight = new NumberField({ initial: 0, min: 0 });
-
     return schema;
   }
 }
@@ -36,10 +30,10 @@ class ZaibatsuItemData extends ZaibatsuBaseItemData {
     const schema = super.defineSchema();
 
     /**
-     * Number of items in this stack
+     * Weight in kilograms
      * @type {NumberField}
      */
-    schema.quantity = new NumberField({ initial: 1, min: 1 });
+    schema.weight = new NumberField({ initial: 0, min: 0 });
 
     /**
      * Current equipped state/location
