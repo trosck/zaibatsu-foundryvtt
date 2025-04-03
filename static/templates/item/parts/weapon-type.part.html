@@ -1,0 +1,7 @@
+<div class="weapon-sheet__item-container">
+  <label for="system.weaponType">{{localize "sheet.item.weaponType"}}</label>
+  <select name="system.weaponType">
+    {{#each CONFIG.ZAIBATSU.WEAPON_TYPES}} >{{{ createSelectOption value=this
+    model=../system.weaponType name=(localizeWeaponType this) }}} {{/each}}
+  </select>
+</div>
