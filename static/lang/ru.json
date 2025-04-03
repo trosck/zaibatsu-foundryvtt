@@ -52,8 +52,21 @@
     "item": {
       "name": "Название предмета",
       "weight": "Вес",
-      "price": "Цена"
+      "price": "Цена",
+      "damage": "Урон",
+      "weaponType": "Тип оружия",
+      "magazineSize": "Размер магазина",
+      "magazineCost": "Цена магазина"
     }
+  },
+  "weaponType": {
+    "melee": "Ближнее",
+    "throwing": "Метательное",
+    "pistol": "Пистолет",
+    "rifle": "Винтовка",
+    "shotgun": "Дробовик",
+    "assaultRifle": "Автомат",
+    "rocket": "Ракета"
   },
   "concepts": {
     "-": {
