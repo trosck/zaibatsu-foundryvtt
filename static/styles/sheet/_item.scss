@@ -2,27 +2,31 @@
 
 .zaibatsu.sheet.item {
   .item-sheet-form {
-    padding: 1rem;
-
-    & > div:not(:last-child) {
-      margin-bottom: 1rem;
-    }
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "name name price"
+      "image description description";
   }
 
-  .item-sheet__info {
-    display: grid;
-    column-gap: 1rem;
-    grid-template-columns: 100px auto;
-
-    .item-sheet__info-img {
-      width: 100px;
-      object-fit: contain;
-    }
+  .item-sheet__name {
+    grid-area: name;
   }
 
-  .item-sheet__group {
-    display: grid;
-    column-gap: 1rem;
-    grid-auto-flow: column;
+  .item-sheet__price {
+    grid-area: price;
+  }
+
+  .item-sheet__image {
+    grid-area: image;
+  }
+
+  .item-sheet__description {
+    grid-area: description;
+  }
+
+  .item-sheet__info-img {
+    object-fit: contain;
   }
 }
