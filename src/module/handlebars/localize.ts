@@ -19,4 +19,8 @@ export function registerLocalizeHelpers() {
   Handlebars.registerHelper("localizeRetrogenic", (id: string, key: string) => {
     return game.i18n.localize(`retrogenics.${id}.${key}`);
   });
+
+  Handlebars.registerHelper("localizeWeaponType", (type: string) => {
+    return game.i18n.localize(`weaponType.${type}`);
+  });
 }
