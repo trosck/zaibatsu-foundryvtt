@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import { ItemTypeEnum } from "../types";
 import { templatesPath } from "../utils/path";
 
 export class ZaibatsuItemSheet extends ItemSheet {
@@ -16,6 +17,9 @@ export class ZaibatsuItemSheet extends ItemSheet {
     const context = await super.getData(options);
     context.system = context.document.system;
     context.CONFIG = CONFIG;
+
+    context.isWeapon = context.item.type === ItemTypeEnum.weapon;
+
     return context;
   }
 
