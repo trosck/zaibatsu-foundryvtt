@@ -6,10 +6,10 @@ import { useCss } from "./module/utils/useCss";
 
 import { ZaibatsuActor } from "./module/entities/ZaibatsuActor";
 import { ZaibatsuActorSheet } from "./module/sheets/ZaibatsuActorSheet";
-import { ZaibatsuWeaponData } from "./module/data/ZaibatsuItemData";
 import { ZaibatsuItemSheet } from "./module/sheets/ZaibatsuItemSheet";
 import { ZaibatsuItem } from "./module/entities/ZaibatsuItem";
 import { ZaibatsuCharacterData } from "./module/data/ZaibatsuCharacterData";
+import { ZaibatsuWeaponData } from "./module/data/ZaibatsuWeaponData";
 
 Hooks.once("init", () => {
   // CONFIG.debug.hooks = true;
