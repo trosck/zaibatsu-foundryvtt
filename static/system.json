@@ -24,7 +24,8 @@
       "npc": {}
     },
     "Item": {
-      "weapon": {}
+      "weapon": {},
+      "armor": {}
     }
   },
   "styles": [
