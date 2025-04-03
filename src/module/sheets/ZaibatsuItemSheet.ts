@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { ItemTypeEnum } from "../types";
+import { ItemTypeEnum, WeaponTypeEnum } from "../types";
 import { templatesPath } from "../utils/path";
 
 export class ZaibatsuItemSheet extends ItemSheet {
@@ -21,6 +21,13 @@ export class ZaibatsuItemSheet extends ItemSheet {
 
     context.isWeapon = context.item.type === ItemTypeEnum.weapon;
     context.isArmor = context.item.type === ItemTypeEnum.armor;
+
+    context.isFirearm = [
+      WeaponTypeEnum.assaultRifle,
+      WeaponTypeEnum.pistol,
+      WeaponTypeEnum.rifle,
+      WeaponTypeEnum.shotgun,
+    ].includes(context.system.weaponType);
 
     return context;
   }
