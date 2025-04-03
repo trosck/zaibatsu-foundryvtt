@@ -7,6 +7,7 @@ export class ZaibatsuItemSheet extends ItemSheet {
   static get defaultOptions(): ActorSheet.Options {
     return foundry.utils.mergeObject(super.defaultOptions, {
       width: 600,
+      height: "auto",
       resizable: false,
       classes: ["zaibatsu", "sheet", "item"],
       template: templatesPath("item", "sheet.html"),
