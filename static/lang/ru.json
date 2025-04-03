@@ -56,7 +56,8 @@
       "damage": "Урон",
       "weaponType": "Тип оружия",
       "magazineSize": "Размер магазина",
-      "magazineCost": "Цена магазина"
+      "magazineCost": "Цена магазина",
+      "armorProtection": "Пункты брони"
     }
   },
   "weaponType": {

@@ -20,6 +20,7 @@ export class ZaibatsuItemSheet extends ItemSheet {
     context.CONFIG = CONFIG;
 
     context.isWeapon = context.item.type === ItemTypeEnum.weapon;
+    context.isArmor = context.item.type === ItemTypeEnum.armor;
 
     return context;
   }
