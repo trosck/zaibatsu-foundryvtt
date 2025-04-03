@@ -106,7 +106,7 @@ const WEAPON_TYPES = <const>[
   "rocket",
 ];
 
-const ITEM_TYPES = <const>["weapon"];
+const ITEM_TYPES = <const>["weapon", "armor"];
 
 const RETROGENICS = <const>{
   Ambidextrous: 10,
