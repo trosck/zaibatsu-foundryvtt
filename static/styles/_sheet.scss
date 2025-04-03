@@ -5,7 +5,8 @@
 
 .zaibatsu.sheet {
   div[contenteditable],
-  input {
+  input,
+  select {
     border: 1px solid;
     background: colors.$background-nearly-transparent;
     width: 100%;
