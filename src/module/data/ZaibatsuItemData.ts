@@ -30,10 +30,10 @@ export class ZaibatsuItemData extends ZaibatsuBaseItemData {
     const schema = super.defineSchema();
 
     /**
-     * Weight in kilograms
+     * Abstract item size
      * @type {NumberField}
      */
-    schema.weight = new NumberField({ initial: 0, min: 0 });
+    schema.size = new NumberField({ initial: 0, min: 0 });
 
     /**
      * Current equipped state/location
