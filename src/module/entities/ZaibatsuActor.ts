@@ -25,12 +25,12 @@ export class ZaibatsuActor extends Actor {
       source.img = assetsPath("images", "default", "npc.png");
     }
 
-    await this.updateSource(source);
+    this.updateSource(source);
 
     return result;
   }
 
-  public getCharacteristicValue(charName: typeof CharacteristicEnum) {
+  private getCharacteristicValue(charName: typeof CharacteristicEnum) {
     return this.system.characteristics[charName].value;
   }
 
@@ -45,7 +45,8 @@ export class ZaibatsuActor extends Actor {
     return defaultLimit;
   }
 
+  // TODO real inventory size
   get inventoryCount() {
-    return 0;
+    return this.items.size;
   }
 }
