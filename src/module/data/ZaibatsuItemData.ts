@@ -7,7 +7,7 @@ const { StringField, SchemaField, NumberField, ArrayField, ObjectField } =
 
 export class ZaibatsuBaseItemData extends ZaibatsuBaseData {
   static defineSchema() {
-    const schema: any = {};
+    const schema = super.defineSchema();
 
     /**
      * Detailed description of the item
@@ -20,6 +20,12 @@ export class ZaibatsuBaseItemData extends ZaibatsuBaseData {
      * @type {NumberField}
      */
     schema.price = new NumberField({ initial: 0, min: 0 });
+
+    /**
+     * Item quantity in inventory and store
+     * @type {NumberField}
+     */
+    schema.quantity = new NumberField({ initial: 1 });
 
     return schema;
   }
