@@ -152,6 +152,20 @@ aside#tooltip.actor__info-concept--tooltip {
     border-color: colors.$default-color;
   }
 
+  .retrogenics__name {
+    padding-bottom: 1.8rem;
+    padding-left: 1.5rem;
+    padding-top: 0.3rem;
+    padding-left: 1rem;
+    border-top: 1px solid;
+    border-bottom: none;
+    background-image: url(../assets/images/actor-sheet/retrogenic-adaptations-title-bg.png);
+    background-size: 25rem;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-position-x: -3px;
+  }
+
   .retrogenic-item {
     margin: 15px 0;
   }
@@ -261,5 +275,22 @@ aside#tooltip.actor__info-concept--tooltip {
 
   .actor__info-concept select {
     width: 100%;
+  }
+
+  .inventory-tab__item-title {
+    border: none;
+  }
+
+  .inventory-tab__item-header,
+  .inventory-tab__item-row {
+    display: grid;
+
+    &.weapon {
+      grid-template-columns: 3fr 1fr 1fr;
+    }
+
+    &.armor {
+      grid-template-columns: 4fr 1fr;
+    }
   }
 }
