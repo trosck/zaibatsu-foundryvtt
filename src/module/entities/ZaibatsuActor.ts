@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import { ZAIBATSU } from "../config";
+import { CharacteristicEnum } from "../types";
 import { assetsPath } from "../utils/path";
 
 export class ZaibatsuActor extends Actor {
@@ -27,5 +28,24 @@ export class ZaibatsuActor extends Actor {
     await this.updateSource(source);
 
     return result;
+  }
+
+  public getCharacteristicValue(charName: typeof CharacteristicEnum) {
+    return this.system.characteristics[charName].value;
+  }
+
+  get inventoryLimit() {
+    const defaultLimit = 8;
+
+    const strength = this.getCharacteristicValue(CharacteristicEnum.str);
+    if (strength >= 10) {
+      return 9;
+    }
+
+    return defaultLimit;
+  }
+
+  get inventoryCount() {
+    return 0;
   }
 }
