@@ -46,7 +46,8 @@
         "experience": "Опыт"
       },
       "tabs": {
-        "skills": "Навыки"
+        "skills": "Навыки",
+        "inventory": "Инвентарь"
       }
     },
     "item": {
@@ -58,6 +59,10 @@
       "magazineSize": "Размер магазина",
       "magazineCost": "Цена магазина",
       "armorProtection": "Пункты брони"
+    },
+    "inventory": {
+      "weapon": "Оружие",
+      "armor": "Броня"
     }
   },
   "weaponType": {
