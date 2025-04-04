@@ -85,26 +85,6 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       }),
     });
 
-    // Weight tracking (current vs max capacity)
-    schema.weight = new SchemaField({
-      value: new NumberField({
-        required: true,
-        nullable: false,
-        integer: true,
-        initial: 0,
-        min: 0,
-        step: 1,
-      }),
-      max: new NumberField({
-        required: true,
-        nullable: false,
-        integer: true,
-        initial: 8,
-        min: 8,
-        max: 9,
-      }),
-    });
-
     // Core character attributes (STR, DEX, END, INT, EDU, SOC)
     schema.characteristics = new SchemaField({
       [CharacteristicEnum.str]: makeCharacteristicField(),
