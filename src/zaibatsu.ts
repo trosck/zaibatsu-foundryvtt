@@ -12,6 +12,7 @@ import { ZaibatsuCharacterData } from "./module/data/ZaibatsuCharacterData";
 import { ZaibatsuWeaponData } from "./module/data/ZaibatsuWeaponData";
 import { ItemTypeEnum } from "./module/types";
 import { ZaibatsuArmorData } from "./module/data/ZaibatsuArmorData";
+import { registerHooks } from "./module/hooks";
 
 Hooks.once("init", () => {
   // CONFIG.debug.hooks = true;
@@ -96,5 +97,6 @@ Hooks.once("init", () => {
   // @ts-ignore - see rollup.config.js
   loadTemplates(handlebarsTemplates);
 
+  registerHooks();
   registerHandlebarsHelpers();
 });
