@@ -29,16 +29,21 @@
       <a class="sheet__navigation-tab" data-tab="skills">
         {{ localize "sheet.actor.tabs.skills" }}
       </a>
+      <a class="sheet__navigation-tab" data-tab="inventory">
+        {{ localize "sheet.actor.tabs.inventory" }}
+      </a>
     </nav>
   </div>
 
-  <div
-    class="actor-sheet__main-body skills"
-    data-group="primary"
-    data-tab="skills"
-  >
-    <div class="actor-sheet__main-body--content">
-      {{> (template "actor/tabs/skills/sheet.html") }}
+  <div class="actor-sheet__navigation-body">
+    <div
+      class="actor-sheet__main-body tab skills"
+      data-group="primary"
+      data-tab="skills"
+    >
+      <div class="actor-sheet__main-body--content">
+        {{> (template "actor/tabs/skills/sheet.html") }}
+      </div>
     </div>
   </div>
 </form>

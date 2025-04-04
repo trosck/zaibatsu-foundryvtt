@@ -14,7 +14,7 @@ export class ZaibatsuActorSheet extends ActorSheet {
       tabs: [
         {
           navSelector: ".sheet__navigation-container",
-          contentSelector: ".actor-sheet__main-body",
+          contentSelector: ".actor-sheet__navigation-body",
           initial: "skills",
         },
       ],
