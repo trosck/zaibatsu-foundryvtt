@@ -6,7 +6,7 @@ const { StringField, SchemaField, NumberField, ArrayField, ObjectField } =
   foundry.data.fields;
 export class ZaibatsuCharacterData extends ZaibatsuBaseData {
   static defineSchema() {
-    const schema: any = {};
+    const schema = super.defineSchema();
 
     // Character's age in years (must be positive integer)
     schema.age = new NumberField({
@@ -118,6 +118,11 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
     schema.retrogenicAdaptations = new ArrayField(
       new StringField({ required: true }),
     );
+
+    schema.money = new SchemaField({
+      personal: new NumberField({ initial: 0 }),
+      corporate: new NumberField({ initial: 0 }),
+    });
 
     return schema;
   }
