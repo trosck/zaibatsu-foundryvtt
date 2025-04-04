@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import { ZAIBATSU } from "../config";
 import { ItemTypeEnum } from "../types";
 import { assetsPath } from "../utils/path";
 
@@ -16,6 +17,15 @@ export class ZaibatsuItem extends Item {
       }
     }
   }
+
+  private isDefaultImage() {
+    const isDefaultFoundryImage =
+      this.img === foundry.documents.BaseItem.DEFAULT_ICON;
+
+    const isDefaultZaibatsuImage = this.img.includes(ZAIBATSU.SYSTEM_FOLDER);
+
+    return isDefaultFoundryImage || isDefaultZaibatsuImage;
+  }
 }
 
 class ZaibatsuWeaponItem extends ZaibatsuItem {
@@ -26,13 +36,27 @@ class ZaibatsuWeaponItem extends ZaibatsuItem {
   ): Promise<boolean | void> {
     const result: boolean = await super._preCreate(data, options, userId);
 
-    if (isDefaultImage(this.img)) {
-      await this.updateSource({
+    if (this.isDefaultImage()) {
+      this.updateSource({
         img: assetsPath("images", "weapons", `${this.system.weaponType}.png`),
       });
     }
 
     return result;
+  }
+
+  async _onUpdate(changed: object, options: object, userId: string) {
+    await super._onUpdate(changed, options, userId);
+
+    if (changed?.system?.weaponType && this.isDefaultImage()) {
+      await this.update({
+        img: assetsPath(
+          "images",
+          "weapons",
+          `${changed.system.weaponType}.png`,
+        ),
+      });
+    }
   }
 }
 
@@ -44,16 +68,12 @@ class ZaibatsuArmorItem extends ZaibatsuItem {
   ): Promise<boolean | void> {
     const result: boolean = await super._preCreate(data, options, userId);
 
-    if (isDefaultImage(this.img)) {
-      await this.updateSource({
+    if (this.isDefaultImage()) {
+      this.updateSource({
         img: assetsPath("images", "armor.png"),
       });
     }
 
     return result;
   }
-}
-
-function isDefaultImage(img: string) {
-  return img === foundry.documents.BaseItem.DEFAULT_ICON;
 }
