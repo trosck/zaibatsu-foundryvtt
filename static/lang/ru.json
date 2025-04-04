@@ -51,14 +51,16 @@
       }
     },
     "item": {
-      "name": "Название предмета",
+      "name": "Название",
       "size": "Размер",
       "price": "Цена",
       "damage": "Урон",
       "weaponType": "Тип оружия",
+      "weaponTypeShort": "Тип",
       "magazineSize": "Размер магазина",
       "magazineCost": "Цена магазина",
-      "armorProtection": "Пункты брони"
+      "armorProtection": "Пункты брони",
+      "armorProtectionShort": "ПБ"
     },
     "inventory": {
       "weapon": "Оружие",
