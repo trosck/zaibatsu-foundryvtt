@@ -31,8 +31,21 @@
       "desc": "Способность влиять на других людей в обществе."
     }
   },
+  "skill": {
+    "name": "Название",
+    "level": "Уровень"
+  },
+  "characteristic": {
+    "name": "Название",
+    "level": "Уровень",
+    "damage": "Урон",
+    "total": "Всего",
+    "mod": "МОД"
+  },
   "sheet": {
     "RetrogenicAdaptations": "Ретрогенные адаптации",
+    "characteristics": "Характеристики",
+    "skills": "Навыки",
     "actor": {
       "name": "Имя",
       "info": {
@@ -46,8 +59,8 @@
         "experience": "Опыт"
       },
       "tabs": {
-        "skills": "Навыки",
-        "inventory": "Инвентарь"
+        "inventory": "Инвентарь",
+        "info": "Информация"
       }
     },
     "item": {
