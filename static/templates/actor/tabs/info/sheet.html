@@ -22,7 +22,9 @@
 </div>
 
 <div class="info-container skills">
-  <h3 class="info-container__title">{{ localize "sheet.skills" }}</h3>
+  <h3 class="info-container__title">
+    {{ localize "sheet.skills" }} __доступно: 0
+  </h3>
 
   <div class="info-container__body">
     <div class="info-container__item">
@@ -38,12 +40,15 @@
       {{> (template "actor/tabs/info/part.skill.html") skill}}
     </div>
     {{/each}}
+    <div class="info-container__item">
+      <div class="info-container__learn">изучить +</div>
+    </div>
   </div>
 </div>
 
 <div class="info-container retrogenics">
   <h3 class="info-container__title">
-    {{ localize "sheet.RetrogenicAdaptations" }}
+    {{ localize "sheet.RetrogenicAdaptations" }} доступно: 20
   </h3>
 
   <div class="info-container__body">
@@ -52,5 +57,6 @@
       {{> (template "actor/tabs/info/part.retrogenic.html") retrogenic }}
     </div>
     {{/each}}
+    <div class="info-container__learn">изучить +</div>
   </div>
 </div>

@@ -106,6 +106,13 @@ aside#tooltip.actor__info-concept--tooltip {
     text-align: center;
   }
 
+  .info-container__learn {
+    margin: auto;
+    border: 1px solid;
+    width: max-content;
+    padding: 0.5rem 1rem;
+  }
+
   .characteristics.info-container .info-container__item {
     grid-template-columns: auto 15% 15% 15%;
 
@@ -116,6 +123,10 @@ aside#tooltip.actor__info-concept--tooltip {
 
   .skills.info-container .info-container__item {
     grid-template-columns: auto 15% 15%;
+
+    .info-container__learn {
+      grid-column: 1 / 4;
+    }
   }
 
   .weapon.info-container .info-container__item {
