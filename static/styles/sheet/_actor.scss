@@ -140,9 +140,14 @@ aside#tooltip.actor__info-concept--tooltip {
     padding: 20px 25px 20px 20px;
   }
 
-  .actor-sheet__main-body.info .actor-sheet__main-body--content {
-    display: grid;
-    gap: 1rem;
+  .actor-sheet__main-body {
+    &.info,
+    &.inventory {
+      .actor-sheet__main-body--content {
+        display: grid;
+        gap: 1rem;
+      }
+    }
   }
 
   .actor-sheet__main-navigation {
