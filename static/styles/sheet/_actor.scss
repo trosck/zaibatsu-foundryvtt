@@ -60,21 +60,14 @@ aside#tooltip.actor__info-concept--tooltip {
     width: 100%;
   }
 
-  .actor-sheet__aside-photo {
-    clip-path: polygon(
-      97.5% 99%,
-      98.1% 10.6%,
-      91.5% 3.6%,
-      13.8% 3%,
-      7.1% 9.7%,
-      7% 99%
-    );
+  .actor-sheet__aside-img {
+    height: 100%;
+    object-fit: contain;
   }
 
-  .actor-sheet__aside-info,
-  .actor-sheet__aside-characteristics {
-    padding-left: 30px;
-    padding-right: 15px;
+  .actor-sheet__aside-info {
+    padding-left: 40px;
+    padding-right: 30px;
   }
 
   .actor__info--group {
@@ -89,8 +82,6 @@ aside#tooltip.actor__info-concept--tooltip {
   .actor__characteristics {
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 50%);
     overflow: hidden;
   }
 
@@ -98,33 +89,17 @@ aside#tooltip.actor__info-concept--tooltip {
     position: relative;
     padding: 10px;
     text-align: center;
+    display: flex;
 
     input {
-      position: absolute;
-      width: 40px;
-      margin: 0;
+      height: 100%;
       padding: 0;
       border: 0;
+      margin: 0;
     }
 
     .actor__characteristics-stat--name {
       text-transform: uppercase;
-      font-size: 0.8rem;
-    }
-
-    .actor__characteristics-stat--ability {
-      top: 36%;
-      left: 14%;
-    }
-
-    .actor__characteristics-stat--modifier {
-      top: 36%;
-      right: 14%;
-    }
-
-    .actor__characteristics-stat--damage {
-      bottom: 11%;
-      left: 29%;
       font-size: 0.8rem;
     }
   }
@@ -197,8 +172,7 @@ aside#tooltip.actor__info-concept--tooltip {
   .actor-sheet__aside-info,
   .actor-sheet__main-navigation,
   .actor-sheet__main-body,
-  .actor-sheet__navigation-body,
-  .actor-sheet__aside-characteristics {
+  .actor-sheet__navigation-body {
     z-index: 1;
   }
 
@@ -218,25 +192,21 @@ aside#tooltip.actor__info-concept--tooltip {
     grid-area: sheet-navigation;
   }
 
-  .actor-sheet__main-body {
+  .actor-sheet__navigation-body {
     grid-area: sheet-body;
-  }
-
-  .actor-sheet__aside-characteristics {
-    grid-area: actor-characteristics;
   }
 
   .actor-sheet-form {
     display: grid;
     grid-template-columns: 37% 63%;
     grid-template-areas:
-      "actor-photo sheet-navigation"
-      "actor-photo sheet-body"
-      "actor-name sheet-body"
-      "actor-info sheet-body"
-      "actor-characteristics sheet-body";
+      ".            ."
+      "actor-name   sheet-navigation"
+      "actor-photo  sheet-body"
+      "actor-info   sheet-body"
+      ".            sheet-body";
     justify-content: space-between;
-    grid-template-rows: 5% 42% 4.5% 20.7% 24% 3.8%;
+    grid-template-rows: 1% 3.4% 68% 20.7% 3%;
     width: 100%;
     width: -moz-available;
     width: -webkit-fill-available;
