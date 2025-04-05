@@ -1,0 +1,26 @@
+<span
+  class="actor__characteristics-stat--name"
+  data-tooltip='{{ localizeCharacteristic @key "desc" }}'
+>
+  {{ localizeCharacteristic @key "full" }}
+</span>
+<input
+  class="actor__characteristics-stat--ability"
+  type="text"
+  name="system.characteristics.{{@key}}.value"
+  value="{{value}}"
+  data-dtype="Number"
+/>
+<input
+  class="actor__characteristics-stat--modifier"
+  type="text"
+  name="system.characteristics.{{@key}}.damage"
+  value="{{damage}}"
+  data-dtype="Number"
+/>
+<input
+  class="actor__characteristics-stat--modifier"
+  readonly
+  type="number"
+  value="0"
+/>

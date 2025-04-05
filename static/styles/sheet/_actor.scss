@@ -84,18 +84,7 @@ aside#tooltip.actor__info-concept--tooltip {
     }
   }
 
-  .actor__characteristics {
-    height: 100%;
-    display: grid;
-    overflow: hidden;
-  }
-
   .actor__characteristics-stat {
-    position: relative;
-    padding: 10px;
-    text-align: center;
-    display: flex;
-
     input {
       height: 100%;
       padding: 0;
@@ -109,45 +98,46 @@ aside#tooltip.actor__info-concept--tooltip {
     }
   }
 
-  .skill-item {
-    margin-bottom: 10px;
+  .info-container {
+    border: 2px solid;
+    padding: 1rem;
   }
 
-  .skill-grid {
+  .info-container__body,
+  .info-container__item {
     display: grid;
-    grid-template-columns: 1fr 50px;
+    gap: 1rem;
+  }
 
-    .skill-item__level {
-      text-align: right;
+  .characteristics.info-container .info-container__item {
+    grid-template-columns: auto 15% 15% 15%;
+
+    input {
+      text-align: center;
     }
   }
 
+  .skills.info-container .info-container__item {
+    grid-template-columns: 6fr 1fr 1fr;
+  }
+
+  .info-container__title {
+    border: 0;
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: rgba(41, 170, 225, 0.1);
+  }
+
   .actor-sheet__main-body {
+    height: 100%;
     overflow: auto;
     padding: 20px 25px 20px 20px;
   }
 
-  .retrogenics__name,
-  .retrogenic-item__name {
-    border-color: colors.$default-color;
-  }
-
-  .retrogenics__name {
-    padding-bottom: 1.8rem;
-    padding-left: 1.5rem;
-    padding-top: 0.3rem;
-    padding-left: 1rem;
-    border-top: 1px solid;
-    border-bottom: none;
-    background-image: url(../assets/images/actor-sheet/retrogenic-adaptations-title-bg.png);
-    background-size: 25rem;
-    background-position: left;
-    background-repeat: no-repeat;
-    background-position-x: -3px;
-  }
-
-  .retrogenic-item {
-    margin: 15px 0;
+  .actor-sheet__main-body.info .actor-sheet__main-body--content {
+    display: grid;
+    gap: 1rem;
   }
 
   .actor-sheet__main-navigation {
