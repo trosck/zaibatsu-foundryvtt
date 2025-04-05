@@ -1,4 +1,6 @@
 {
+  "i18n-ally.theme.annotationMissing": "rgba(200, 200, 200, 1)",
+  "i18n-ally.sourceLanguage": "ru",
   "i18n-ally.localesPaths": [
     "static/lang"
   ]
