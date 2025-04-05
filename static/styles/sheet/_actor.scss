@@ -60,9 +60,14 @@ aside#tooltip.actor__info-concept--tooltip {
     width: 100%;
   }
 
+  .actor-sheet__aside-photo {
+    padding: 1px 8px 0px 24px;
+  }
+
   .actor-sheet__aside-img {
     height: 100%;
-    object-fit: contain;
+    width: 100%;
+    object-fit: cover;
   }
 
   .actor-sheet__aside-info {

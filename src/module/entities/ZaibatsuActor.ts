@@ -18,11 +18,11 @@ export class ZaibatsuActor extends Actor {
     };
 
     if (this.type === ZAIBATSU.ACTOR_TYPE.AGENT) {
-      source.img = assetsPath("images", "default", "agent.png");
+      source.img = assetsPath("images", "default", "agent.jpg");
     }
 
     if (this.type === ZAIBATSU.ACTOR_TYPE.NPC) {
-      source.img = assetsPath("images", "default", "npc.png");
+      source.img = assetsPath("images", "default", "npc.jpg");
     }
 
     this.updateSource(source);
