@@ -84,18 +84,11 @@ aside#tooltip.actor__info-concept--tooltip {
     }
   }
 
-  .actor__characteristics-stat {
-    input {
-      height: 100%;
-      padding: 0;
-      border: 0;
-      margin: 0;
-    }
-
-    .actor__characteristics-stat--name {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-    }
+  .actor__characteristics-stat input {
+    height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
   }
 
   .info-container {
@@ -109,6 +102,10 @@ aside#tooltip.actor__info-concept--tooltip {
     gap: 1rem;
   }
 
+  .info-container__item > *:not(:first-child) {
+    text-align: center;
+  }
+
   .characteristics.info-container .info-container__item {
     grid-template-columns: auto 15% 15% 15%;
 
@@ -118,7 +115,15 @@ aside#tooltip.actor__info-concept--tooltip {
   }
 
   .skills.info-container .info-container__item {
-    grid-template-columns: 6fr 1fr 1fr;
+    grid-template-columns: auto 15% 15%;
+  }
+
+  .weapon.info-container .info-container__item {
+    grid-template-columns: auto 15% 15% 15%;
+  }
+
+  .armor.info-container .info-container__item {
+    grid-template-columns: auto 15% 15%;
   }
 
   .info-container__title {

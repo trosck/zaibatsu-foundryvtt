@@ -1,25 +1,40 @@
-{{#if actor.itemTypes.weapon}} {{> (template
-"actor/tabs/inventory/part.title.html") (localize "TYPES.Item.weapon") }}
-<div class="inventory-tab__item-header weapon">
-  <div>{{localize "sheet.item.name"}}</div>
-  <div>{{localize "sheet.item.damage"}}</div>
-  <div>{{localize "sheet.item.weaponTypeShort"}}</div>
+{{#if actor.itemTypes.weapon}}
+<div class="info-container weapon">
+  <h3 class="info-container__title">{{ localize "TYPES.Item.weapon" }}</h3>
+
+  <div class="info-container__body">
+    <div class="info-container__item">
+      <div>{{localize "sheet.item.name"}}</div>
+      <div>{{localize "sheet.item.damage"}}</div>
+      <div>{{localize "sheet.item.weaponTypeShort"}}</div>
+      <div>{{localize "sheet.item.size"}}</div>
+    </div>
+    {{#each actor.itemTypes.weapon as |item|}}
+    <div class="info-container__item">
+      {{> (template "actor/tabs/inventory/part.weapon.html") item }}
+    </div>
+    {{/each}}
+  </div>
 </div>
-{{#each actor.itemTypes.weapon as |item|}}
-<div class="inventory-tab__item-row weapon">
-  <div>{{item.name}}</div>
-  <div>{{item.system.damage}}</div>
-  <div>{{localizeWeaponType item.system.weaponType}}</div>
+{{/if}}
+
+<!-- prettier-ignore -->
+
+{{#if actor.itemTypes.armor}}
+<div class="info-container armor">
+  <h3 class="info-container__title">{{ localize "TYPES.Item.armor" }}</h3>
+
+  <div class="info-container__body">
+    <div class="info-container__item">
+      <div>{{localize "sheet.item.name"}}</div>
+      <div>{{localize "sheet.item.armorProtectionShort"}}</div>
+      <div>{{localize "sheet.item.size"}}</div>
+    </div>
+    {{#each actor.itemTypes.armor as |item|}}
+    <div class="info-container__item">
+      {{> (template "actor/tabs/inventory/part.armor.html") item }}
+    </div>
+    {{/each}}
+  </div>
 </div>
-{{/each}} {{/if}} {{#if actor.itemTypes.armor}} {{> (template
-"actor/tabs/inventory/part.title.html") (localize "TYPES.Item.armor") }}
-<div class="inventory-tab__item-header armor">
-  <div>{{localize "sheet.item.name"}}</div>
-  <div>{{localize "sheet.item.armorProtectionShort"}}</div>
-</div>
-{{#each actor.itemTypes.armor as |item|}}
-<div class="inventory-tab__item-row armor">
-  <div>{{item.name}}</div>
-  <div>{{item.system.armorProtection}}</div>
-</div>
-{{/each}} {{/if}}
+{{/if}}
