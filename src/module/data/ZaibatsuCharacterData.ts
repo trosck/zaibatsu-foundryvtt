@@ -58,33 +58,6 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       }),
     });
 
-    // Armor statistics (current value, max possible, and modifiers)
-    schema.armor = new SchemaField({
-      value: new NumberField({
-        required: true,
-        nullable: false,
-        integer: true,
-        initial: 0,
-        min: 0,
-        step: 1,
-      }),
-      max: new NumberField({
-        required: true,
-        nullable: false,
-        integer: true,
-        initial: 0,
-        min: 0,
-        max: 9,
-      }),
-      mod: new NumberField({
-        required: false,
-        nullable: false,
-        integer: true,
-        initial: 0,
-        min: 0,
-      }),
-    });
-
     // Core character attributes (STR, DEX, END, INT, EDU, SOC)
     schema.characteristics = new SchemaField({
       [CharacteristicEnum.str]: makeCharacteristicField(),
@@ -113,11 +86,6 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       integer: true,
       initial: 0,
     });
-
-    // List of active retrogenic adaptations
-    schema.retrogenicAdaptations = new ArrayField(
-      new StringField({ required: true }),
-    );
 
     schema.money = new SchemaField({
       personal: new NumberField({ initial: 0 }),
