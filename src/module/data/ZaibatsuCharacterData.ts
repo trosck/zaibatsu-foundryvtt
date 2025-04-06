@@ -80,12 +80,7 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
     });
 
     // Available points for retrogenic enhancements
-    schema.retrogenicPoints = new NumberField({
-      required: true,
-      nullable: false,
-      integer: true,
-      initial: 0,
-    });
+    schema.retrogenicPoints = new NumberField({ initial: 20 });
 
     schema.money = new SchemaField({
       personal: new NumberField({ initial: 0 }),
