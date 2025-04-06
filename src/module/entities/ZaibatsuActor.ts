@@ -45,8 +45,10 @@ export class ZaibatsuActor extends Actor {
     return defaultLimit;
   }
 
-  // TODO real inventory size
   get inventoryCount() {
-    return this.items.size;
+    return this.items.reduce((total, item) => {
+      const itemSize = item.system?.size ?? 0;
+      return total + itemSize;
+    }, 0);
   }
 }
