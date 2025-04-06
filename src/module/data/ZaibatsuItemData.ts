@@ -21,12 +21,6 @@ export class ZaibatsuBaseItemData extends ZaibatsuBaseData {
      */
     schema.price = new NumberField({ initial: 0, min: 0 });
 
-    /**
-     * Item quantity in inventory and store
-     * @type {NumberField}
-     */
-    schema.quantity = new NumberField({ initial: 1 });
-
     return schema;
   }
 }
@@ -34,6 +28,12 @@ export class ZaibatsuBaseItemData extends ZaibatsuBaseData {
 export class ZaibatsuItemData extends ZaibatsuBaseItemData {
   static defineSchema() {
     const schema = super.defineSchema();
+
+    /**
+     * Item quantity in inventory and store
+     * @type {NumberField}
+     */
+    schema.quantity = new NumberField({ initial: 1 });
 
     /**
      * Abstract item size
