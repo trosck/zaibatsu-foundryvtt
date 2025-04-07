@@ -1,0 +1,33 @@
+<h2>Создание персонажа</h2>
+
+<div class="form-group">
+  <label for="actor.name">{{localize "sheet.actor.name"}}:</label>
+  <input
+    name="actor.name"
+    type="text"
+    value="{{actor.name}}"
+    placeholder='{{localize "sheet.actor.name"}}'
+  />
+</div>
+
+<div class="form-group">
+  <label for="system.age">{{localize "sheet.actor.info.age"}}:</label>
+  <input type="text" name="system.age" value="" data-dtype="Number" />
+</div>
+
+<div class="form-group">
+  <label for="system.gender">{{localize "sheet.actor.info.gender"}}:</label>
+  <input type="text" name="system.gender" value="" />
+</div>
+
+<button type="submit" class="init-submit">Сохранить</button>
+
+<div>
+  <div>{{localize "sheet.actor.info.concept"}}</div>
+  {{#each CONFIG.ZAIBATSU.CONCEPTS}}
+  <div>
+    <div>{{localizeConcept this key="name"}}</div>
+    <div>{{{localizeConcept this key="description"}}}</div>
+  </div>
+  {{/each}}
+</div>

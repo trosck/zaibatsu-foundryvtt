@@ -50,6 +50,11 @@ export class ZaibatsuActorSheet extends ActorSheet {
       .on("click", this._toggleAccordion.bind(this));
   }
 
+  public async _onSubmit(event: Event) {
+    event.preventDefault();
+    await this.actor.update({ "system.isInitialized": true });
+  }
+
   private async _toggleAccordion(event: Event): Promise<void> {
     const target = <HTMLElement>event.currentTarget;
     const type = target.dataset?.accordionType;

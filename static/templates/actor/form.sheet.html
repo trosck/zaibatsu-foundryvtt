@@ -1,0 +1,54 @@
+<!-- prettier-ignore -->
+{{> (template "actor/icons/svg-actor-interface-bg.html") }}
+{{> (template "actor/icons/svg-actor-overlay.html") }}
+
+<div class="actor-sheet__aside-photo">
+  <img class="actor-sheet__aside-img" src="{{actor.img}}" />
+</div>
+
+<div class="actor-sheet__aside-name">
+  <input
+    readonly
+    name="name"
+    type="text"
+    value="{{actor.name}}"
+    placeholder='{{localize "sheet.actor.name"}}'
+  />
+</div>
+
+<div class="actor-sheet__aside-info">
+  {{> (template "actor/part.info.html") }}
+</div>
+
+<div class="actor-sheet__main-navigation sheet__navigation">
+  <nav class="sheet__navigation-container" data-group="primary">
+    <a class="sheet__navigation-tab" data-tab="info">
+      {{ localize "sheet.actor.tabs.info" }}
+    </a>
+    <a class="sheet__navigation-tab" data-tab="inventory">
+      {{ localize "sheet.actor.tabs.inventory" }}
+    </a>
+  </nav>
+</div>
+
+<div class="actor-sheet__navigation-body">
+  <div
+    class="actor-sheet__main-body tab info"
+    data-group="primary"
+    data-tab="info"
+  >
+    <div class="actor-sheet__main-body--content">
+      {{> (template "actor/tabs/info/sheet.html") }}
+    </div>
+  </div>
+
+  <div
+    class="actor-sheet__main-body tab inventory"
+    data-group="primary"
+    data-tab="inventory"
+  >
+    <div class="actor-sheet__main-body--content">
+      {{> (template "actor/tabs/inventory/sheet.html") }}
+    </div>
+  </div>
+</div>
