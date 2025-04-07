@@ -138,7 +138,7 @@ const RETROGENICS = <const>{
   MetabolismAccelerator: 15,
   PheromoneSense: 5,
   EideticMemory: 5,
-  PoisonousFangs: 1,
+  PoisonousFangs: 10,
 };
 
 const CHARACTERISTICS = <const>["str", "dex", "end", "int", "edu", "soc"];
