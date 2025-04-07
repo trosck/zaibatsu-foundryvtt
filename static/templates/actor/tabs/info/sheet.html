@@ -22,9 +22,7 @@
 </div>
 
 <div class="info-container skills">
-  <h3 class="info-container__title">
-    {{ localize "sheet.skills" }} __доступно: 0
-  </h3>
+  <h3 class="info-container__title">{{ localize "sheet.skills" }}</h3>
 
   <div class="info-container__body">
     <div class="info-container__item">
@@ -40,15 +38,31 @@
       {{> (template "actor/tabs/info/part.skill.html") skill}}
     </div>
     {{/each}}
+  </div>
+
+  <button
+    class="info-container__learn"
+    data-accordion-type="skills"
+    {{disableIfFalse
+    system.skillPoints}}
+  >
+    {{ localize "sheet.actor.learn" }} ({{ localize "sheet.actor.available" }}:
+    {{ system.skillPoints }})
+  </button>
+
+  <div class="info-container__list" data-accordion-type="skills">
+    {{#each unlearnedSkills as |skill|}}
     <div class="info-container__item">
-      <div class="info-container__learn">изучить +</div>
+      <div>{{ localizeSkill skill "name" }}</div>
+      <div>{{ localizeSkill skill "description" }}</div>
     </div>
+    {{/each}}
   </div>
 </div>
 
 <div class="info-container retrogenics">
   <h3 class="info-container__title">
-    {{ localize "sheet.RetrogenicAdaptations" }} доступно: 20
+    {{ localize "sheet.RetrogenicAdaptations" }}
   </h3>
 
   <div class="info-container__body">
@@ -57,6 +71,24 @@
       {{> (template "actor/tabs/info/part.retrogenic.html") retrogenic }}
     </div>
     {{/each}}
-    <div class="info-container__learn">изучить +</div>
+  </div>
+
+  <button
+    class="info-container__learn"
+    data-accordion-type="retrogenics"
+    {{disableIfFalse
+    system.retrogenicPoints}}
+  >
+    {{ localize "sheet.actor.learn" }} ({{ localize "sheet.actor.available" }}:
+    {{ system.retrogenicPoints }})
+  </button>
+
+  <div class="info-container__list" data-accordion-type="retrogenics">
+    {{#each unlearnedRetrogenics as |retrogenicPrice|}}
+    <div class="info-container__item">
+      <div>{{ localizeRetrogenic @key "name" }} ({{retrogenicPrice}})</div>
+      <div>{{ localizeRetrogenic @key "description" }}</div>
+    </div>
+    {{/each}}
   </div>
 </div>
