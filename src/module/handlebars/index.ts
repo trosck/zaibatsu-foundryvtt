@@ -32,4 +32,10 @@ export default function registerHandlebarsHelpers() {
 
     return value ? "disabled" : "";
   });
+
+  Handlebars.registerHelper("disableIfFalse", (value) => {
+    if (!value) {
+      return "disabled";
+    }
+  });
 }
