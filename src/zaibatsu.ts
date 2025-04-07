@@ -92,6 +92,15 @@ Hooks.once("init", () => {
     ],
   };
 
+  CONFIG.fontDefinitions["Tektur"] = {
+    editor: true,
+    fonts: [
+      {
+        url: [joinPath(ZAIBATSU.SYSTEM_FOLDER, "fonts", "Tektur.ttf")],
+      },
+    ],
+  };
+
   useCss(joinPath(ZAIBATSU.SYSTEM_FOLDER, "styles", "index.css"));
 
   // @ts-ignore - see rollup.config.js

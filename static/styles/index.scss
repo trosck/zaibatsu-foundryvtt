@@ -7,9 +7,14 @@
   src: url("../fonts/SynteticAsrocuus.otf") format("opentype");
 }
 
+@font-face {
+  font-family: "Tektur";
+  src: url("../fonts/Tektur.ttf") format("truetype");
+}
+
 body,
 button {
-  font-family: "SynteticAsrocuus", monospace;
+  font-family: "Tektur", monospace;
   letter-spacing: 1px;
 }
 
