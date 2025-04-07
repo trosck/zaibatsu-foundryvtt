@@ -26,3 +26,18 @@ body {
 .window-app button {
   color: colors.$form-light;
 }
+
+#chat-controls .roll-type-select,
+select {
+  background: colors.$background-opaque;
+}
+
+option {
+  color: colors.$default-color;
+  background-color: colors.$item-active;
+}
+
+optgroup {
+  color: colors.$light-color;
+  background-color: colors.$nav-background;
+}
