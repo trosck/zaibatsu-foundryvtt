@@ -30,8 +30,22 @@ export class ZaibatsuActor extends Actor {
     return result;
   }
 
+  private getCharacteristic(charName: typeof CharacteristicEnum) {
+    return this.system.characteristics[charName];
+  }
+
   private getCharacteristicValue(charName: typeof CharacteristicEnum) {
-    return this.system.characteristics[charName].value;
+    return this.getCharacteristic(charName).value;
+  }
+
+  private getCharacteristicDamage(charName: typeof CharacteristicEnum) {
+    return this.getCharacteristic(charName).damage;
+  }
+
+  private getCharacteristicTotalValue(charName: typeof CharacteristicEnum) {
+    const value = this.getCharacteristicValue(charName);
+    const damage = this.getCharacteristicDamage(charName);
+    return value - damage;
   }
 
   get inventoryLimit() {
