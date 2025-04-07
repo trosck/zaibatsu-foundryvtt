@@ -2,11 +2,28 @@ import { ZAIBATSU } from "../config";
 import { CharacteristicEnum, SkillEnum } from "../types";
 import { ZaibatsuBaseData } from "./ZaibatsuBaseData";
 
-const { StringField, SchemaField, NumberField, ArrayField, ObjectField } =
-  foundry.data.fields;
+const {
+  StringField,
+  SchemaField,
+  NumberField,
+  ArrayField,
+  ObjectField,
+  BooleanField,
+} = foundry.data.fields;
 export class ZaibatsuCharacterData extends ZaibatsuBaseData {
   static defineSchema() {
     const schema = super.defineSchema();
+
+    /**
+     * Indicates whether the actor has been fully initialized.
+     * During initialization, the player must:
+     * 1. Roll for character attributes
+     * 2. Enter character name, age, and gender
+     * 3. Select a character concept from the predefined list
+     * @type {BooleanField}
+     * @default false
+     */
+    schema.isInitialized = new BooleanField({ initial: false });
 
     // Character's age in years (must be positive integer)
     schema.age = new NumberField({
@@ -79,8 +96,13 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       },
     });
 
+    // Available points for skill upgrade
+    schema.skillPoints = new NumberField({ initial: 0 });
+
     // Available points for retrogenic enhancements
     schema.retrogenicPoints = new NumberField({ initial: 20 });
+
+    schema.retrogenicAdaptations = new ArrayField(new StringField());
 
     schema.money = new SchemaField({
       personal: new NumberField({ initial: 0 }),
