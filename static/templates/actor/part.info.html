@@ -1,108 +1,46 @@
 <div class="actor__info--group">
-  <span class="actor__info-age"
-    >{{localize "sheet.actor.info.age"}}:<input
-      type="text"
-      name="system.age"
-      value="{{system.age}}"
-      data-dtype="Number"
-      onClick="this.select();"
-  /></span>
-  <span class="actor__info-gender"
-    >{{localize "sheet.actor.info.gender"}}:<input
-      type="text"
-      name="system.gender"
-      value="{{system.gender}}"
-      onClick="this.select();"
-  /></span>
-</div>
+  <span class="actor__info-age">
+    {{localize "sheet.actor.info.age"}}: {{system.age}}
+  </span>
 
-<div class="actor__info--group">
-  <span class="actor__info-concept"
-    >{{localize "sheet.actor.info.concept"}}:
-    <!-- prettier-ignore -->
-    <select
-      name="system.concept"
-      data-tooltip-direction="RIGHT"
-      data-tooltip-class="actor__info-concept--tooltip"
-      {{ disableAfterSelect value=system.concept allowForGm=true }}
-    >
-      <option value="">---</option>
-      {{#each CONFIG.ZAIBATSU.CONCEPTS}}
-      {{{
-        createSelectOption
-          value=this
-          model=../system.concept
-          name=(localizeConcept this key="name")
-          tooltip=(localizeConcept this key="description")
-      }}}
-      {{/each}}
-    </select>
+  <span class="actor__info-gender">
+    {{localize "sheet.actor.info.gender"}}: {{system.gender}}
   </span>
 </div>
 
 <div class="actor__info--group">
-  <span class="actor__info-boss"
-    >{{localize "sheet.actor.info.employer"}}:<input
-      type="text"
-      name="system.employer.name"
-      value="{{system.employer.name}}"
-      onClick="this.select();"
-  /></span>
+  <span
+    class="actor__info-concept"
+    data-tooltip='{{ localizeConcept system.concept key="description" }}'
+  >
+    <!-- prettier-ignore -->
+    {{localize "sheet.actor.info.concept"}}: {{ localizeConcept system.concept key="name" }}
+  </span>
 </div>
 
 <div class="actor__info--group">
-  <span class="actor__info-boss"
-    >{{localize "sheet.actor.info.rank"}}:<input
-      type="number"
-      name="system.employer.rank"
-      value="{{system.employer.rank}}"
-      onClick="this.select();"
-  /></span>
-
-  <span class="actor__info-boss"
-    >{{localize "sheet.actor.info.experience"}}:<input
-      type="number"
-      name="system.employer.experience"
-      value="{{system.employer.experience}}"
-      onClick="this.select();"
-  /></span>
+  <span class="actor__info-boss">
+    {{localize "sheet.actor.info.employer"}}: {{system.employer.name}}
+  </span>
 </div>
 
 <div class="actor__info--group">
-  <span class="actor__info-armor"
-    >{{localize "sheet.actor.info.armor"}}:<input
-      disabled
-      type="number"
-      name="system.armor.value"
-      value="{{system.armor.value}}"
-      placeholder="0"
-      data-dtype="Number"
-      onClick="this.select();"
-  /></span>
-  <div class="actor__info--group">
-    <span class="actor__info-weight"
-      >{{localize "sheet.actor.info.weight"}}:</span
-    >
-    <span>
-      <input
-        disabled
-        type="number"
-        name="system.weight.value"
-        value="{{actor.inventoryCount}}"
-        placeholder="0"
-        data-dtype="Number"
-        onClick="this.select();"
-      />
-      /
-      <input
-        disabled
-        type="number"
-        name="system.weight.max"
-        value="{{actor.inventoryLimit}}"
-        placeholder="0"
-        data-dtype="Number"
-        onClick="this.select();"
-      />
-    </span>
-  </div>
+  <span class="actor__info-boss">
+    {{localize "sheet.actor.info.rank"}}: {{system.employer.rank}}
+  </span>
+
+  <span class="actor__info-boss">
+    {{localize "sheet.actor.info.experience"}}: {{system.employer.experience}}
+  </span>
+</div>
+
+<div class="actor__info--group">
+  <span class="actor__info-armor">
+    {{localize "sheet.actor.info.armor"}}: {{system.armor.value}}
+  </span>
+
+  <span class="actor__info-weight">
+    {{localize "sheet.actor.info.weight"}}:
+    {{actor.inventoryCount}}/{{actor.inventoryLimit}}
+  </span>
 </div>
