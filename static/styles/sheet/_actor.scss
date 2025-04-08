@@ -1,19 +1,10 @@
 @use "colors";
 
-aside#tooltip.actor__info-concept--tooltip {
-  text-align: left;
-}
-
 .zaibatsu.sheet.actor {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-
-  input {
-    box-shadow: none;
-    background: none;
-  }
 
   .window-resizable-handle {
     z-index: 2;
@@ -223,7 +214,7 @@ aside#tooltip.actor__info-concept--tooltip {
     grid-area: sheet-body;
   }
 
-  .actor-sheet-form {
+  .form-sheet {
     display: grid;
     grid-template-columns: 37% 63%;
     grid-template-areas:
@@ -235,8 +226,12 @@ aside#tooltip.actor__info-concept--tooltip {
     justify-content: space-between;
     grid-template-rows: 1% 3.4% 68% 20.7% 3%;
     width: 100%;
-    width: -moz-available;
-    width: -webkit-fill-available;
+    height: 100%;
+
+    input {
+      box-shadow: none;
+      background: none;
+    }
   }
 
   .actor-overlay {
@@ -289,5 +284,107 @@ aside#tooltip.actor__info-concept--tooltip {
     &.armor {
       grid-template-columns: 4fr 1fr;
     }
+  }
+}
+
+// initialization form
+.zaibatsu.sheet.actor {
+  .form-init {
+    height: 100%;
+    padding: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "title  title"
+      "left   right"
+      "button button";
+  }
+
+  .form-init,
+  .form-init__left-side,
+  .form-init__right-side,
+  .form-init__wrapper {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .form-init__title {
+    grid-area: title;
+  }
+
+  .form-init__left-side {
+    grid-area: left;
+  }
+
+  .form-init__right-side {
+    grid-area: right;
+  }
+
+  .form-init__button-group {
+    grid-area: button;
+  }
+
+  .form-init__wrapper.concept-list {
+    overflow: auto;
+
+    .form-init__group {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .form-init__group--concept-item {
+      border: 1px solid;
+      padding: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        color: colors.$light-color;
+        box-shadow: 0px 0px 15px -5px colors.$light-color;
+      }
+    }
+  }
+
+  .form-init__right-side {
+    height: auto;
+    overflow: auto;
+
+    .concept-title {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  .form-init__left-side,
+  .form-init__left-side .form-init__wrapper {
+    height: min-content;
+  }
+
+  .form-init__left-side .form-init__wrapper.info {
+    grid-template-areas:
+      "name   name"
+      "age    gender";
+
+    .name {
+      grid-area: name;
+    }
+
+    .age {
+      grid-area: age;
+    }
+
+    .gender {
+      grid-area: gender;
+    }
+  }
+
+  .roll-section__roll-attributes {
+    width: max-content;
+  }
+
+  .roll-section__dice-groups {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+
+    text-align: center;
   }
 }

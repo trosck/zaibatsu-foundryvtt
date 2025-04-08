@@ -73,7 +73,12 @@
         "info": "Информация"
       },
       "learn": "Изучить",
-      "available": "доступно"
+      "available": "доступно",
+      "statsGeneration": {
+        "title": "Определение статов",
+        "results": "Результаты броска",
+        "buttonRoll": "Бросить кубы"
+      }
     },
     "item": {
       "name": "Название",
