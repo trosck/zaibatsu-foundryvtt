@@ -109,6 +109,30 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
       corporate: new NumberField({ initial: 0 }),
     });
 
+    /**
+     * Derived data fields for computed properties.
+     * These fields are calculated dynamically and not stored directly in the database.
+     */
+    schema.derived = new SchemaField({
+      /**
+       * Inventory tracking system.
+       * Contains calculated values for capacity and current usage.
+       */
+      inventory: new SchemaField({
+        /**
+         * Maximum inventory capacity.
+         * Determined by character strength.
+         */
+        limit: new NumberField(),
+
+        /**
+         * Current inventory load.
+         * Represents the sum of all carried items sizes.
+         */
+        load: new NumberField(),
+      }),
+    });
+
     return schema;
   }
 }

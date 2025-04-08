@@ -3,6 +3,7 @@
 import { ZAIBATSU } from "../config";
 import { CharacteristicEnum } from "../types";
 import { assetsPath } from "../utils/path";
+import { ZaibatsuItem } from "./ZaibatsuItem";
 
 export class ZaibatsuActor extends Actor {
   protected async _preCreate(
@@ -30,6 +31,35 @@ export class ZaibatsuActor extends Actor {
     return result;
   }
 
+  prepareDerivedData() {
+    super.prepareDerivedData();
+
+    this.system.derived = {
+      inventory: {
+        limit: this._calculateInventoryLimit(),
+        load: this._calculateInventoryLoad(),
+      },
+    };
+  }
+
+  private _calculateInventoryLimit() {
+    const defaultLimit = 8;
+
+    const strength = this.getCharacteristicValue(CharacteristicEnum.str);
+    if (strength >= 10) {
+      return 9;
+    }
+
+    return defaultLimit;
+  }
+
+  private _calculateInventoryLoad() {
+    return this.items.reduce((total: number, item: ZaibatsuItem) => {
+      const itemSize = item.system?.size ?? 0;
+      return total + itemSize;
+    }, 0);
+  }
+
   private getCharacteristic(charName: typeof CharacteristicEnum) {
     return this.system.characteristics[charName];
   }
@@ -46,23 +76,5 @@ export class ZaibatsuActor extends Actor {
     const value = this.getCharacteristicValue(charName);
     const damage = this.getCharacteristicDamage(charName);
     return value - damage;
-  }
-
-  get inventoryLimit() {
-    const defaultLimit = 8;
-
-    const strength = this.getCharacteristicValue(CharacteristicEnum.str);
-    if (strength >= 10) {
-      return 9;
-    }
-
-    return defaultLimit;
-  }
-
-  get inventoryCount() {
-    return this.items.reduce((total, item) => {
-      const itemSize = item.system?.size ?? 0;
-      return total + itemSize;
-    }, 0);
   }
 }
