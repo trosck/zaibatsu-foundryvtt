@@ -3,9 +3,11 @@
 import { ZAIBATSU } from "../config";
 import { registerCommonHelpers } from "./common";
 import { registerLocalizeHelpers } from "./localize";
+import { registerTooltipHelpers } from "./tooltip";
 
 export default function registerHandlebarsHelpers() {
   registerCommonHelpers();
+  registerTooltipHelpers();
   registerLocalizeHelpers();
 
   Handlebars.registerHelper("createSelectOption", ({ hash }) => {
