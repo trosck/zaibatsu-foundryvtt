@@ -1,7 +1,5 @@
-aside#tooltip {
-  .stats-tooltip-content {
-    text-align: left;
-  }
+aside#tooltip[role="tooltip"] {
+  text-align: left;
 
   .stats-tooltip-content {
     display: grid;
