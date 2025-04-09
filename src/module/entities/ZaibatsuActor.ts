@@ -72,7 +72,7 @@ export class ZaibatsuActor extends Actor {
   private _calculateActorRank(): number {
     // Experience thresholds for each rank (exclusive upper bounds)
     const RANK_THRESHOLDS = [3, 9, 18, 30, 45, 63];
-    const exp = this.actor.system.employer.experience;
+    const exp = this.system.employer.experience;
 
     // Find the first threshold that exceeds the actor's experience
     for (let rank = 0; rank < RANK_THRESHOLDS.length; rank++) {
