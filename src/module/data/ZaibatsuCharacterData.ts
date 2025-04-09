@@ -57,14 +57,6 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
         blank: true,
         initial: "",
       }),
-      rank: new NumberField({
-        required: true,
-        nullable: false,
-        integer: true,
-        initial: 1,
-        min: 0,
-        step: 1,
-      }),
       experience: new NumberField({
         required: true,
         nullable: false,
@@ -164,6 +156,14 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
          */
         skill: new ArrayField(new StringField()),
       }),
+
+      /**
+       * Rank of the character, representing their level based on experience.
+       *
+       * @type {Number}
+       * @default 1
+       */
+      rank: new NumberField({ initial: 1 }),
     });
 
     return schema;
