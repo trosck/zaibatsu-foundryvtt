@@ -96,15 +96,7 @@ const WEAPON_RANGES = <const>{
   },
 };
 
-const WEAPON_TYPES = <const>[
-  "melee",
-  "throwing",
-  "pistol",
-  "rifle",
-  "shotgun",
-  "assaultRifle",
-  "rocket",
-];
+const WEAPON_TYPES = Object.keys(WEAPON_RANGES);
 
 const ITEM_TYPES = <const>["weapon", "armor"];
 
