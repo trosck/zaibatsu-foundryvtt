@@ -73,8 +73,13 @@
   <div class="form-init__right-side">
     <div class="form-init__wrapper concept-title">
       <h3 class="form-init__group--concept-title">
-        {{localize "sheet.actor.info.concept"}}:
-        <span class="form-init__group--concept-value"></span>
+        {{localize "sheet.actor.info.concept"}}: {{ localizeConcept
+        system.concept key="name" }}
+        <i
+          class="fas fa-info-circle concept-info-icon fa-2xs"
+          data-tooltip='{{ localize "concepts.-.description" }}'
+          data-tooltip-direction="DOWN"
+        ></i>
       </h3>
     </div>
 
