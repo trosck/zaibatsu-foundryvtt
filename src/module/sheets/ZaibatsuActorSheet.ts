@@ -134,10 +134,9 @@ export class ZaibatsuActorSheet extends ActorSheet {
     const target = <HTMLElement>event.currentTarget;
     const concept = target.dataset.concept;
 
-    this.actor.system.concept = concept;
-
-    const conceptName = game.i18n.localize(`concepts.${concept}.name`);
-    this.element.find(".form-init__group--concept-value").text(conceptName);
+    await this.actor.update({
+      "system.concept": concept,
+    });
   }
 
   /**
