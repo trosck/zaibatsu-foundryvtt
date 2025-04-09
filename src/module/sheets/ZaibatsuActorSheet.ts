@@ -66,6 +66,41 @@ export class ZaibatsuActorSheet extends ActorSheet {
   }
 
   /**
+   * Custom render method that preserves scroll positions of specified elements
+   * @param {boolean} force - Whether to force a full re-render
+   * @param {object} options - Additional rendering options
+   */
+  async _render(force = false, options = {}) {
+    // CSS selector for elements that should maintain their scroll position
+    const className = ".save-scroll-state";
+
+    // Object to store current scroll positions
+    const scrollPositions = {};
+
+    // Capture current scroll positions of all matching elements
+    this.element.find(className).each((i, el) => {
+      scrollPositions[el.className] = {
+        top: el.scrollTop, // Vertical scroll position
+        left: el.scrollLeft, // Horizontal scroll position
+      };
+    });
+
+    // Execute the parent class's render logic
+    await super._render(force, options);
+
+    // Restore scroll positions on the next animation frame
+    // Ensures DOM is fully rendered before restoration
+    requestAnimationFrame(() => {
+      this.element.find(className).each((i, el) => {
+        if (scrollPositions[el.className]) {
+          el.scrollTop = scrollPositions[el.className].top;
+          el.scrollLeft = scrollPositions[el.className].left;
+        }
+      });
+    });
+  }
+
+  /**
    * Sets up event listeners
    * @param html - jQuery reference to sheet HTML
    */
