@@ -1,5 +1,5 @@
 import { ZAIBATSU } from "../config";
-import { CharacteristicEnum, SkillEnum } from "../types";
+import { CharacteristicEnum, ConceptDataItem, SkillEnum } from "../types";
 import { ZaibatsuBaseData } from "./ZaibatsuBaseData";
 
 const {
@@ -130,6 +130,39 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
          * Represents the sum of all carried items sizes.
          */
         load: new NumberField(),
+      }),
+
+      /**
+       * Character concept configuration that defines gameplay bonuses.
+       * Maps each character archetype to its mechanical benefits.
+       *
+       * @example
+       * // For 'Samurai' concept:
+       * {
+       *   characteristic: "end", // Main characteristic (Endurance)
+       *   skill: ["Intelligence"]      // +1 to Intelligence skill
+       * }
+       */
+      concept: new SchemaField({
+        /**
+         * Primary characteristic for the concept that should be maximized.
+         * Player should prioritize this as highest characteristic
+         *
+         * @see {@link CharacteristicEnum}
+         */
+        characteristic: new StringField(),
+
+        /**
+         * Skill proficiency bonuses granted by the concept.
+         * - Provides +1 rank to selected skill (player's choice if multiple)
+         * - Only one skill bonus can be active
+         *
+         * @example
+         * ["HeavyWeapons", "Explosives"] // Special Forces can choose either
+         *
+         * @see {@link SkillEnum}
+         */
+        skill: new ArrayField(new StringField()),
       }),
     });
 
