@@ -132,7 +132,6 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
        * // For 'Samurai' concept:
        * {
        *   characteristic: "end", // Main characteristic (Endurance)
-       *   skill: ["Intelligence"]      // +1 to Intelligence skill
        * }
        */
       concept: new SchemaField({
@@ -143,18 +142,6 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
          * @see {@link CharacteristicEnum}
          */
         characteristic: new StringField(),
-
-        /**
-         * Skill proficiency bonuses granted by the concept.
-         * - Provides +1 rank to selected skill (player's choice if multiple)
-         * - Only one skill bonus can be active
-         *
-         * @example
-         * ["HeavyWeapons", "Explosives"] // Special Forces can choose either
-         *
-         * @see {@link SkillEnum}
-         */
-        skill: new ArrayField(new StringField()),
       }),
 
       /**
