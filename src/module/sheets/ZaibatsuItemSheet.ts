@@ -14,14 +14,23 @@ export class ZaibatsuItemSheet extends ItemSheet {
     });
   }
 
+  /**
+   * Prepares data for the item sheet template
+   * @param options - Rendering options
+   * @returns Context data for template
+   */
   async getData(options?: Partial<ActorSheet.Options> | undefined) {
     const context = await super.getData(options);
+
+    // Shortcut references
     context.system = context.document.system;
     context.CONFIG = CONFIG;
 
+    // Item type flags for template conditional rendering
     context.isWeapon = context.item.type === ItemTypeEnum.weapon;
     context.isArmor = context.item.type === ItemTypeEnum.armor;
 
+    // Firearm subtype check
     context.isFirearm = [
       WeaponTypeEnum.assaultRifle,
       WeaponTypeEnum.pistol,
@@ -32,31 +41,39 @@ export class ZaibatsuItemSheet extends ItemSheet {
     return context;
   }
 
-  /** @override */
   activateListeners(html: JQuery): void {
     super.activateListeners(html);
     this.listenTextEditor(html);
   }
 
+  /**
+   * Configures content-editable divs as rich text fields
+   * @param html
+   */
   protected listenTextEditor(html: JQuery) {
+    // Handle text editing completion
     html
       .find('div[contenteditable="true"][data-edit]')
       .on("focusout", this._onSubmit.bind(this));
 
+    // Handle paste events with formatting cleanup
     html
       .find('div[contenteditable="true"][data-edit]')
       .on("paste", onPasteStripFormatting.bind(this));
   }
 }
 
+/**
+ * Handles paste events by stripping formatting
+ * @param event - Clipboard paste event
+ */
 function onPasteStripFormatting(event) {
-  if (event?.originalEvent?.clipboardData?.getData) {
+  const clipboardData =
+    event?.originalEvent?.clipboardData || event?.clipboardData;
+
+  if (clipboardData?.getData) {
     event.preventDefault();
-    const text = event.originalEvent.clipboardData.getData("text/plain");
-    window.document.execCommand("insertText", false, text);
-  } else if (event?.clipboardData?.getData) {
-    event.preventDefault();
-    const text = event.clipboardData.getData("text/plain");
+    const text = clipboardData.getData("text/plain");
     window.document.execCommand("insertText", false, text);
   }
 }
