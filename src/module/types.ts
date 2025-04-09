@@ -108,4 +108,4 @@ export const ConceptData = <const>{
   },
 };
 
-export type ConceptDateItem = (typeof ConceptData)[Concept];
+export type ConceptDataItem = (typeof ConceptData)[Concept];
