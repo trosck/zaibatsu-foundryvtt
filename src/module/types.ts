@@ -36,3 +36,76 @@ export const WeaponTypeEnum = dictFromArray<WeaponType>(ZAIBATSU.WEAPON_TYPES);
 export type ItemType = (typeof ZAIBATSU.ITEM_TYPES)[number];
 
 export const ItemTypeEnum = dictFromArray<ItemType>(ZAIBATSU.ITEM_TYPES);
+
+export type Concept = (typeof ZAIBATSU.CONCEPTS)[number];
+
+export const ConceptEnum = dictFromArray<Concept>(ZAIBATSU.CONCEPTS);
+
+export const ConceptData = <const>{
+  [ConceptEnum.Affirist]: {
+    characteristic: CharacteristicEnum.soc,
+    skill: [SkillEnum.Fake],
+  },
+  [ConceptEnum.Burakumin]: {
+    characteristic: CharacteristicEnum.str,
+    skill: [SkillEnum.Bujutsu],
+  },
+  [ConceptEnum.FreelanceCop]: {
+    characteristic: CharacteristicEnum.str,
+    skill: [SkillEnum.Bribes],
+  },
+  [ConceptEnum.Dealer]: {
+    characteristic: CharacteristicEnum.int,
+    skill: [SkillEnum.Streetwise],
+  },
+  [ConceptEnum.Detective]: {
+    characteristic: CharacteristicEnum.edu,
+    skill: [SkillEnum.Investigation],
+  },
+  [ConceptEnum.Killer]: {
+    characteristic: CharacteristicEnum.dex,
+    skill: [SkillEnum.Aiming],
+  },
+  [ConceptEnum.Kuruma]: {
+    characteristic: CharacteristicEnum.dex,
+    skill: [SkillEnum.GroundTransport],
+  },
+  [ConceptEnum.MartialArtsMaster]: {
+    characteristic: CharacteristicEnum.end,
+    skill: [SkillEnum.Karate, SkillEnum.Jujutsu],
+  },
+  [ConceptEnum.Ninja]: {
+    characteristic: CharacteristicEnum.dex,
+    skill: [SkillEnum.SecuritySystems],
+  },
+  [ConceptEnum.Technician]: {
+    characteristic: CharacteristicEnum.edu,
+    skill: [SkillEnum.Mechanics, SkillEnum.Electronics],
+  },
+  [ConceptEnum.OrganTrader]: {
+    characteristic: CharacteristicEnum.dex,
+    skill: [SkillEnum.UrbanSurvival],
+  },
+  [ConceptEnum.Samurai]: {
+    characteristic: CharacteristicEnum.end,
+    skill: [SkillEnum.Intelligence],
+  },
+  [ConceptEnum.Salaryman]: {
+    characteristic: CharacteristicEnum.soc,
+    skill: [SkillEnum.Commerce],
+  },
+  [ConceptEnum.SoftJockey]: {
+    characteristic: CharacteristicEnum.int,
+    skill: [SkillEnum.Computers],
+  },
+  [ConceptEnum.SpecialForces]: {
+    characteristic: CharacteristicEnum.end,
+    skill: [SkillEnum.HeavyWeapons, SkillEnum.Explosives],
+  },
+  [ConceptEnum.StreetSurgeon]: {
+    characteristic: CharacteristicEnum.edu,
+    skill: [SkillEnum.Medicine],
+  },
+};
+
+export type ConceptDateItem = (typeof ConceptData)[Concept];
