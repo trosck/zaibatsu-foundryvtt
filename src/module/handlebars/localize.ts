@@ -2,7 +2,11 @@
 
 export function registerLocalizeHelpers() {
   Handlebars.registerHelper("localizeConcept", (concept: string, { hash }) => {
-    return game.i18n.localize(`concepts.${concept || "-"}.${hash.key}`);
+    if (!concept) {
+      return "";
+    }
+
+    return game.i18n.localize(`concepts.${concept}.${hash.key}`);
   });
 
   Handlebars.registerHelper(
