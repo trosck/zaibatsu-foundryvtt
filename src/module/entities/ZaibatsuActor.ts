@@ -38,13 +38,51 @@ export class ZaibatsuActor extends Actor {
   prepareDerivedData() {
     super.prepareDerivedData();
 
-    // Inventory management system
+    /**
+     * Derived actor data structure containing computed values
+     * @property {number} rank - Current progression rank (1-7)
+     * @property {Object} inventory - Inventory management metrics
+     * @property {number} inventory.limit - Maximum carrying capacity (based on STR)
+     * @property {number} inventory.load - Current total weight of carried items
+     */
     this.system.derived = {
+      rank: this._calculateActorRank(),
       inventory: {
-        limit: this._calculateInventoryLimit(), // Max capacity based on STR
-        load: this._calculateInventoryLoad(), // Current carried weight
+        limit: this._calculateInventoryLimit(),
+        load: this._calculateInventoryLoad(),
       },
     };
+  }
+
+  /**
+   * Calculates actor's progression rank based on accumulated employer experience
+   *
+   * | Rank | Threshold |
+   * |------|-----------|
+   * | 1    | 0         |
+   * | 2    | 3         |
+   * | 3    | 9         |
+   * | 4    | 18        |
+   * | 5    | 30        |
+   * | 6    | 45        |
+   * | 7    | 63        |
+   *
+   * @returns {number} Current rank between 1 and 7
+   */
+  private _calculateActorRank(): number {
+    // Experience thresholds for each rank (exclusive upper bounds)
+    const RANK_THRESHOLDS = [3, 9, 18, 30, 45, 63];
+    const exp = this.actor.system.employer.experience;
+
+    // Find the first threshold that exceeds the actor's experience
+    for (let rank = 0; rank < RANK_THRESHOLDS.length; rank++) {
+      if (exp < RANK_THRESHOLDS[rank]) {
+        return rank + 1; // Return 1-based rank
+      }
+    }
+
+    // Default to max rank if all thresholds are exceeded
+    return RANK_THRESHOLDS.length + 1;
   }
 
   /**
