@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import { ZAIBATSU } from "../config";
+import { ConceptData } from "../types";
 import { registerCommonHelpers } from "./common";
 import { registerLocalizeHelpers } from "./localize";
 import { registerTooltipHelpers } from "./tooltip";
@@ -39,5 +40,9 @@ export default function registerHandlebarsHelpers() {
     if (!value) {
       return "disabled";
     }
+  });
+
+  Handlebars.registerHelper("getConceptSkills", (value: string) => {
+    return ConceptData[value]?.skill;
   });
 }

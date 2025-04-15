@@ -83,6 +83,15 @@
       </h3>
     </div>
 
+    <div class="form-init__group">
+      <label for="concept.skill"> {{ localize "sheet.skillLevelUp" }} </label>
+      <select name="concept.skill">
+        {{#each (getConceptSkills system.concept) as |skill|}}
+        <option value="{{skill}}">{{ localizeSkill skill "name" }}</option>
+        {{/each}}
+      </select>
+    </div>
+
     <div class="form-init__wrapper concept-list save-scroll-state">
       <div class="form-init__group">
         {{#each CONFIG.ZAIBATSU.CONCEPTS}}

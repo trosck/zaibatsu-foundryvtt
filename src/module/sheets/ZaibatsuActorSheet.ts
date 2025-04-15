@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import { ZAIBATSU } from "../config";
+import { CharacteristicEnum, Concept, ConceptData } from "../types";
 import { templatesPath } from "../utils/path";
 
 // Tracks open/closed state of accordion sections
@@ -145,18 +146,50 @@ export class ZaibatsuActorSheet extends ActorSheet {
       const key = formData.get(`characteristicRolls.${i}.key`);
       const value = formData.get(`characteristicRolls.${i}.value`);
 
-      characteristics[key] = {};
-      characteristics[key].value = value;
+      characteristics[key] = {
+        value: parseInt(value),
+        damage: 0,
+      };
     }
+
+    const education = characteristics[CharacteristicEnum.edu].value;
+    const skillPoints = this._calculateSkillPoints(education);
+
+    const conceptSkill = formData.get("concept.skill");
 
     await this.actor.update({
       "name": this.actor.name,
+
       "system.age": this.actor.system.age,
       "system.gender": this.actor.system.gender,
       "system.concept": this.actor.system.concept,
       "system.characteristics": characteristics,
+
+      "system.skillPoints": skillPoints,
+      "system.skills": {
+        [conceptSkill]: 1,
+      },
+
       "system.isInitialized": true,
     });
+  }
+
+  /**
+   * Calculates available skill points based on Education characteristic
+   * Uses tiered thresholds with linear progression (every 3 points = +1 skill point)
+   *
+   * Skill Point Thresholds:
+   * - 1-3 EDU: 1 point
+   * - 4-6 EDU: 2 points
+   * - 7-9 EDU: 3 points
+   * - 10+ EDU: 4 points
+   *
+   * @param {number} education - Education characteristic value
+   * @returns {number} Skill points between 1 and 4
+   */
+  private _calculateSkillPoints(education: number): number {
+    // Linear tiered progression (1 point per 3 EDU)
+    return Math.min(Math.floor((education + 2) / 3), 4);
   }
 
   /**
@@ -167,11 +200,14 @@ export class ZaibatsuActorSheet extends ActorSheet {
     event.preventDefault();
 
     const target = <HTMLElement>event.currentTarget;
-    const concept = target.dataset.concept;
+    const concept = <Concept>target.dataset.concept;
 
     await this.actor.update({
       "system.concept": concept,
     });
+
+    const conceptSelect = this.element.find('select[name="concept.skill"]');
+    conceptSelect.val(ConceptData[concept]?.skill[0]);
   }
 
   /**
