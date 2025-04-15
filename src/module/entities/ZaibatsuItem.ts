@@ -41,6 +41,9 @@ export class ZaibatsuItem extends Item {
   }
 }
 
+/**
+ * @see ZaibatsuWeaponData
+ */
 class ZaibatsuWeaponItem extends ZaibatsuItem {
   protected async _preCreate(
     data: object,
@@ -74,6 +77,9 @@ class ZaibatsuWeaponItem extends ZaibatsuItem {
   }
 }
 
+/**
+ * @see ZaibatsuArmorData
+ */
 class ZaibatsuArmorItem extends ZaibatsuItem {
   protected async _preCreate(
     data: object,

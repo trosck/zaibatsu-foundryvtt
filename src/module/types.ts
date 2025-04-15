@@ -109,3 +109,9 @@ export const ConceptData = <const>{
 };
 
 export type ConceptDataItem = (typeof ConceptData)[Concept];
+
+export type ConcealmentType = (typeof ZAIBATSU.CONCEALMENT_TYPES)[number];
+
+export const ConcealmentEnum = dictFromArray<ConcealmentType>(
+  ZAIBATSU.CONCEALMENT_TYPES,
+);

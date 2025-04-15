@@ -1,4 +1,5 @@
 import { ZAIBATSU } from "../config";
+import { ConcealmentEnum } from "../types";
 import { ZaibatsuItemData } from "./ZaibatsuItemData";
 
 const { StringField, SchemaField, NumberField, ArrayField, ObjectField } =
@@ -54,6 +55,15 @@ export class ZaibatsuWeaponData extends ZaibatsuItemData {
      * @type {ArrayField<NumberField>}
      */
     schema.fireRate = new ArrayField(new NumberField({ initial: 1 }));
+
+    /**
+     * Level of concealment for the weapon
+     * This indicates how easily the weapon can be hidden or concealed.
+     * @type {StringField}
+     */
+    schema.concealment = new StringField({
+      initial: ConcealmentEnum.pocket,
+    });
 
     return schema;
   }

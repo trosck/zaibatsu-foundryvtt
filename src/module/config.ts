@@ -135,6 +135,8 @@ const RETROGENICS = <const>{
 
 const CHARACTERISTICS = <const>["str", "dex", "end", "int", "edu", "soc"];
 
+const CONCEALMENT_TYPES = <const>["pocket", "underJacket", "underCoat", "none"];
+
 export const ZAIBATSU = {
   WEAPON_RANGES,
   WEAPON_TYPES,
@@ -147,4 +149,5 @@ export const ZAIBATSU = {
   ITEM_TYPES,
   CONCEPTS,
   SKILLS,
+  CONCEALMENT_TYPES,
 };
