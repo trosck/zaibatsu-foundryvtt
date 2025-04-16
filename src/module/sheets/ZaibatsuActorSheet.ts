@@ -240,6 +240,13 @@ export class ZaibatsuActorSheet extends ActorSheet {
     conceptSelect.val(ConceptData[concept]?.skill[0]);
   }
 
+  /**
+   * Handles skill selection in the progression interface
+   * Automatically closes skills accordion when no points remain
+   *
+   * @param {Event} event - Click event from skill selection button
+   * @returns {Promise<void>}
+   */
   private async _onClickSkill(event: Event) {
     event.preventDefault();
 
@@ -260,6 +267,13 @@ export class ZaibatsuActorSheet extends ActorSheet {
     }
   }
 
+  /**
+   * Processes retrogenic adaptation purchase in progression UI
+   * Closes retrogenics panel when budget is exhausted
+   *
+   * @param {Event} event - Click event from adaptation button
+   * @returns {Promise<void>}
+   */
   private async _onClickRetrogenic(event: Event) {
     event.preventDefault();
 
@@ -280,6 +294,13 @@ export class ZaibatsuActorSheet extends ActorSheet {
     }
   }
 
+  /**
+   * Increases existing skill level when upgrade points are available
+   * Prevents action if character has no remaining skill points
+   *
+   * @param {Event} event - Click event from skill upgrade button
+   * @returns {Promise<void>}
+   */
   private async _onSkillLevelUp(event: Event) {
     event.preventDefault();
 
@@ -299,8 +320,11 @@ export class ZaibatsuActorSheet extends ActorSheet {
   }
 
   /**
-   * Toggles accordion sections
-   * @param event - Click event
+   * Manages accordion section toggles in progression UI
+   * Routes click events to the accordion controller
+   *
+   * @param {Event} event - Click event from accordion header
+   * @returns {Promise<void>}
    */
   private _onToggleAccordion(event: Event): Promise<void> {
     event.preventDefault();
@@ -315,6 +339,13 @@ export class ZaibatsuActorSheet extends ActorSheet {
     this.toggleAccordion(type);
   }
 
+  /**
+   * Controls accordion animation and state tracking
+   * Validates accordion type before operation
+   *
+   * @param {Accordion} type - Accordion section identifier
+   * @throws {Error} When invalid accordion type provided
+   */
   private toggleAccordion(type: Accordion) {
     if (!Object.keys(ACCORDION).includes(type)) {
       throw new Error("Invalid accordion type: " + type);
