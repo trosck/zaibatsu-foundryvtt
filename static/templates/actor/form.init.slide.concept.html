@@ -1,0 +1,30 @@
+<div class="form-init__wrapper concept-title">
+  <h3 class="form-init__group--concept-title">
+    {{localize "sheet.actor.info.concept"}}: {{ localizeConcept system.concept
+    key="name" }}
+    <i
+      class="fas fa-info-circle concept-info-icon fa-2xs"
+      data-tooltip='{{ localize "concepts.-.description" }}'
+      data-tooltip-direction="DOWN"
+    ></i>
+  </h3>
+
+  <select name="concept.skill">
+    {{#each (getConceptSkills system.concept) as |skill|}}
+    <option value="{{skill}}">{{ localizeSkill skill "name" }}</option>
+    {{/each}}
+  </select>
+</div>
+
+<div class="form-init__wrapper concept-list save-scroll-state">
+  <div class="form-init__group">
+    {{#each CONFIG.ZAIBATSU.CONCEPTS}}
+    <div class="form-init__group--concept-item" data-concept="{{this}}">
+      <h3 class="concept-name">{{localizeConcept this key="name"}}</h3>
+      <div class="concept-description">
+        {{{localizeConcept this key="description"}}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

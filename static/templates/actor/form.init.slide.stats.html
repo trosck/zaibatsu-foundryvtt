@@ -1,0 +1,39 @@
+<h3>
+  {{ localize "sheet.actor.statsGeneration.title" }}
+  <i
+    class="fas fa-info-circle stats-info-icon fa-2xs"
+    data-tooltip="{{ tooltipCharacteristics }}"
+    data-tooltip-direction="RIGHT"
+  ></i>
+</h3>
+
+<div class="roll-section">
+  {{#if characteristicRolls.showRollButton}}
+  <button type="button" class="roll-section__roll-attributes">
+    {{ localize "sheet.actor.statsGeneration.buttonRoll" }}
+  </button>
+  {{else}}
+  <div class="roll-section__dice-groups">
+    {{#each characteristicRolls.diceGroups as |diceGroup index|}}
+    <div class="dice-pair">
+      <input
+        style="display: none"
+        name="characteristicRolls.{{index}}.value"
+        value="{{diceGroup.result}}"
+      />
+      <label for="characteristicRolls.{{index}}.key">
+        {{ diceGroup.title }}
+      </label>
+      <select name="characteristicRolls.{{index}}.key">
+        <option value="">---</option>
+        {{#each ../CONFIG.ZAIBATSU.CHARACTERISTICS as |char|}}
+        <option value="{{char}}">
+          {{ localizeCharacteristic char "full" }}
+        </option>
+        {{/each}}
+      </select>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>

@@ -17,6 +17,11 @@ const ACCORDION = {
   retrogenics: false,
 };
 
+const INIT_SLIDE = {
+  current: 1,
+  max: 3,
+};
+
 type Accordion = keyof typeof ACCORDION;
 
 export class ZaibatsuActorSheet extends ActorSheet {
@@ -100,6 +105,7 @@ export class ZaibatsuActorSheet extends ActorSheet {
     // Restore scroll positions on the next animation frame
     // Ensures DOM is fully rendered before restoration
     requestAnimationFrame(() => {
+      this.showCurrentSlide();
       this.element.find(className).each((i, el) => {
         if (scrollPositions[el.className]) {
           el.scrollTop = scrollPositions[el.className].top;
@@ -160,13 +166,22 @@ export class ZaibatsuActorSheet extends ActorSheet {
    * @param event - Form submit event
    */
   public async _onSubmit(event: Event) {
-    event.preventDefault();
+    super._onSubmit(event);
+
+    if (this.actor.system.isInitialized) {
+      INIT_SLIDE.current = 1;
+      return;
+    }
 
     const target = <HTMLElement>event.target;
     const isForm = target?.nodeName === "FORM";
 
-    if (!target || !isForm || this.actor.system.isInitialized) {
+    if (!target || !isForm) {
       return;
+    }
+
+    if (INIT_SLIDE.current < INIT_SLIDE.max) {
+      return this.showNextSlide();
     }
 
     const formData = new FormData(target);
@@ -188,10 +203,6 @@ export class ZaibatsuActorSheet extends ActorSheet {
     const conceptSkill = formData.get("concept.skill");
 
     await this.actor.update({
-      "name": this.actor.name,
-
-      "system.age": this.actor.system.age,
-      "system.gender": this.actor.system.gender,
       "system.concept": this.actor.system.concept,
       "system.characteristics": characteristics,
 
@@ -202,6 +213,45 @@ export class ZaibatsuActorSheet extends ActorSheet {
 
       "system.isInitialized": true,
     });
+  }
+
+  private showNextSlide() {
+    const currentSlide = this.element.find(
+      `.form-init__slide[data-slide-index="${INIT_SLIDE.current}"]`,
+    );
+
+    currentSlide.hide();
+
+    const nextSlide = this.element.find(
+      `.form-init__slide[data-slide-index="${++INIT_SLIDE.current}"]`,
+    );
+
+    nextSlide.show();
+  }
+
+  private showCurrentSlide() {
+    for (let i = 1; i <= INIT_SLIDE.max; i++) {
+      const slide = this.element.find(
+        `.form-init__slide[data-slide-index="${i}"]`,
+      );
+
+      if (i === INIT_SLIDE.current) {
+        slide.show();
+      } else {
+        slide.hide();
+      }
+    }
+  }
+
+  protected _onChangeInput(event: JQuery.ChangeEvent): Promise<void | object> {
+    const target = <HTMLElement>event.target;
+    const name = target.getAttribute("name");
+
+    if (name?.includes("characteristicRolls") || name === "concept.skill") {
+      return;
+    } else {
+      super._onChangeInput(event);
+    }
   }
 
   /**

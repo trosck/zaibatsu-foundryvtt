@@ -6,6 +6,12 @@
   flex-wrap: nowrap;
   justify-content: flex-start;
 
+  button {
+    width: max-content;
+    color: colors.$default-color;
+    border-color: colors.$default-color;
+  }
+
   .window-resizable-handle {
     z-index: 2;
   }
@@ -52,7 +58,7 @@
   }
 
   .actor-sheet__aside-photo {
-    padding: 1px 8px 0px 24px;
+    margin: 1px 8px 0px 24px;
   }
 
   .actor-sheet__aside-img {
@@ -67,7 +73,10 @@
   }
 
   .actor__info--group {
-    display: flex;
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr 1fr;
 
     span {
       display: flex;
@@ -238,6 +247,19 @@
     grid-area: actor-info;
   }
 
+  .actor-sheet__aside-photo {
+    position: relative;
+  }
+
+  .actor-sheet__aside-concept {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+    box-shadow: 0 0 10px black;
+  }
+
   .actor-sheet__main-navigation {
     grid-area: sheet-navigation;
   }
@@ -324,11 +346,6 @@
   .form-init {
     height: 100%;
     padding: 2rem;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas:
-      "title  title"
-      "left   right"
-      "button button";
   }
 
   .form-init,
@@ -339,20 +356,20 @@
     gap: 1rem;
   }
 
-  .form-init__title {
-    grid-area: title;
+  .form-init__slide--wrapper {
+    overflow: auto;
   }
 
-  .form-init__left-side {
-    grid-area: left;
+  .form-init__wrapper.concept-title {
+    display: flex;
+    position: sticky;
+    top: 0;
+    padding-bottom: 1rem;
   }
 
-  .form-init__right-side {
-    grid-area: right;
-  }
-
-  .form-init__button-group {
-    grid-area: button;
+  .form-init__button-next {
+    display: block;
+    margin-left: auto;
   }
 
   .form-init__wrapper.concept-list {
@@ -406,10 +423,6 @@
     .gender {
       grid-area: gender;
     }
-  }
-
-  .roll-section__roll-attributes {
-    width: max-content;
   }
 
   .roll-section__dice-groups {

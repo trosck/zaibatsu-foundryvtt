@@ -1,112 +1,23 @@
 <div class="form-init">
   <h1 class="form-init__title">{{ localize "sheet.actorCreation" }}</h1>
 
-  <div class="form-init__left-side">
-    <div class="form-init__wrapper info">
-      <div class="form-init__group name">
-        <label for="actor.name">{{localize "sheet.actor.name"}}:</label>
-        <input
-          name="actor.name"
-          type="text"
-          value="{{actor.name}}"
-          placeholder='{{localize "sheet.actor.name"}}'
-          onclick="this.select()"
-        />
-      </div>
-
-      <div class="form-init__group age">
-        <label for="system.age">{{localize "sheet.actor.info.age"}}:</label>
-        <input type="text" name="system.age" value="" data-dtype="Number" />
-      </div>
-
-      <div class="form-init__group gender">
-        <label for="system.gender"
-          >{{localize "sheet.actor.info.gender"}}:</label
-        >
-        <input type="text" name="system.gender" value="" />
-      </div>
+  <div class="form-init__slide--wrapper save-scroll-state">
+    <div class="form-init__slide" data-slide-index="1">
+      {{> (template "actor/form.init.slide.concept.html") }}
     </div>
 
-    <div class="form-init__wrapper concept-title">
-      <h3>
-        {{ localize "sheet.actor.statsGeneration.title" }}
-        <i
-          class="fas fa-info-circle stats-info-icon fa-2xs"
-          data-tooltip="{{ tooltipCharacteristics }}"
-          data-tooltip-direction="RIGHT"
-        ></i>
-      </h3>
-
-      <div class="roll-section">
-        {{#if characteristicRolls.showRollButton}}
-        <button type="button" class="roll-section__roll-attributes">
-          {{ localize "sheet.actor.statsGeneration.buttonRoll" }}
-        </button>
-        {{else}}
-        <div class="roll-section__dice-groups">
-          {{#each characteristicRolls.diceGroups as |diceGroup index|}}
-          <div class="dice-pair">
-            <input
-              style="display: none"
-              name="characteristicRolls.{{index}}.value"
-              value="{{diceGroup.result}}"
-            />
-            <label for="characteristicRolls.{{index}}.key">
-              {{ diceGroup.title }}
-            </label>
-            <select name="characteristicRolls.{{index}}.key">
-              <option value="">---</option>
-              {{#each ../CONFIG.ZAIBATSU.CHARACTERISTICS as |char|}}
-              <option value="{{char}}">
-                {{ localizeCharacteristic char "full" }}
-              </option>
-              {{/each}}
-            </select>
-          </div>
-          {{/each}}
-        </div>
-        {{/if}}
-      </div>
-    </div>
-  </div>
-
-  <div class="form-init__right-side">
-    <div class="form-init__wrapper concept-title">
-      <h3 class="form-init__group--concept-title">
-        {{localize "sheet.actor.info.concept"}}: {{ localizeConcept
-        system.concept key="name" }}
-        <i
-          class="fas fa-info-circle concept-info-icon fa-2xs"
-          data-tooltip='{{ localize "concepts.-.description" }}'
-          data-tooltip-direction="DOWN"
-        ></i>
-      </h3>
+    <div class="form-init__slide" data-slide-index="2">
+      {{> (template "actor/form.init.slide.info.html") }}
     </div>
 
-    <div class="form-init__group">
-      <label for="concept.skill"> {{ localize "sheet.skillLevelUp" }} </label>
-      <select name="concept.skill">
-        {{#each (getConceptSkills system.concept) as |skill|}}
-        <option value="{{skill}}">{{ localizeSkill skill "name" }}</option>
-        {{/each}}
-      </select>
-    </div>
-
-    <div class="form-init__wrapper concept-list save-scroll-state">
-      <div class="form-init__group">
-        {{#each CONFIG.ZAIBATSU.CONCEPTS}}
-        <div class="form-init__group--concept-item" data-concept="{{this}}">
-          <h3 class="concept-name">{{localizeConcept this key="name"}}</h3>
-          <div class="concept-description">
-            {{{localizeConcept this key="description"}}}
-          </div>
-        </div>
-        {{/each}}
-      </div>
+    <div class="form-init__slide" data-slide-index="3">
+      {{> (template "actor/form.init.slide.stats.html") }}
     </div>
   </div>
 
   <div class="form-init__button-group">
-    <button type="submit" class="form-init__button-submit">Сохранить</button>
+    <button type="submit" class="form-init__button-next">
+      {{ localize "sheet.next" }}
+    </button>
   </div>
 </div>
