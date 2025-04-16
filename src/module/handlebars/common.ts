@@ -1,10 +1,14 @@
 // @ts-nocheck
 
-import { templatesPath } from "../utils/path";
+import { assetsPath, templatesPath } from "../utils/path";
 
 export function registerCommonHelpers() {
   Handlebars.registerHelper("template", (path: string) => {
     return templatesPath(path);
+  });
+
+  Handlebars.registerHelper("asset", (path: string) => {
+    return assetsPath(path);
   });
 
   Handlebars.registerHelper("concat", (...args: string[]) => {
