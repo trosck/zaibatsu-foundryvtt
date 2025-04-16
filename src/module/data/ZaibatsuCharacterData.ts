@@ -115,13 +115,13 @@ export class ZaibatsuCharacterData extends ZaibatsuBaseData {
          * Maximum inventory capacity.
          * Determined by character strength.
          */
-        limit: new NumberField(),
+        limit: new NumberField({ initial: 0 }),
 
         /**
          * Current inventory load.
          * Represents the sum of all carried items sizes.
          */
-        load: new NumberField(),
+        load: new NumberField({ initial: 0 }),
       }),
 
       /**
