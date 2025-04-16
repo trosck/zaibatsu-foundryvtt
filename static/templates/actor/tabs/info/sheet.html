@@ -71,7 +71,10 @@
   <div class="info-container__body">
     {{#each system.retrogenicAdaptations as |retrogenic|}}
     <div class="info-container__item">
-      {{> (template "actor/tabs/info/part.retrogenic.html") retrogenic }}
+      <h3 class="retrogenic-name">{{ localizeRetrogenic this "name" }}</h3>
+      <div class="retrogenic-description">
+        {{ localizeRetrogenic this "description" }}
+      </div>
     </div>
     {{/each}}
   </div>

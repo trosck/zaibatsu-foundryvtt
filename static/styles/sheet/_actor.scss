@@ -132,6 +132,10 @@
     }
   }
 
+  .info-container__item .retrogenic-description {
+    text-transform: capitalize;
+  }
+
   .characteristics.info-container .info-container__body .info-container__item {
     grid-template-columns: auto 15% 15% 15%;
 
