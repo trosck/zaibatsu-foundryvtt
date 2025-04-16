@@ -35,24 +35,27 @@
       data-tooltip='{{ localizeSkill @key "description" }}'
       data-tooltip-direction="LEFT"
     >
-      {{> (template "actor/tabs/info/part.skill.html") skill}}
+      <div class="skill-name">{{ localizeSkill @key "name" }}</div>
+      <div class="skill-level" data-key="{{ @key }}">
+        <span class="skill-level-value">{{ this }}</span>
+        {{#if ../system.skillPoints}}
+        <span class="skill-level-up">+</span>
+        {{/if}}
+      </div>
     </div>
     {{/each}}
   </div>
 
-  <button
-    class="info-container__learn"
-    data-accordion-type="skills"
-    {{disableIfFalse
-    system.skillPoints}}
-  >
+  {{#if system.skillPoints}}
+  <button class="info-container__learn" data-accordion-type="skills">
     {{ localize "sheet.actor.learn" }} ({{ localize "sheet.actor.available" }}:
     {{ system.skillPoints }})
   </button>
+  {{/if}}
 
   <div class="info-container__list" data-accordion-type="skills">
     {{#each untrainedSkills as |skill|}}
-    <div class="info-container__item">
+    <div class="info-container__item" data-key="{{skill}}">
       <div>{{ localizeSkill skill "name" }}</div>
       <div>{{ localizeSkill skill "description" }}</div>
     </div>
@@ -73,19 +76,16 @@
     {{/each}}
   </div>
 
-  <button
-    class="info-container__learn"
-    data-accordion-type="retrogenics"
-    {{disableIfFalse
-    system.retrogenicPoints}}
-  >
+  {{#if system.retrogenicPoints}}
+  <button class="info-container__learn" data-accordion-type="retrogenics">
     {{ localize "sheet.actor.learn" }} ({{ localize "sheet.actor.available" }}:
     {{ system.retrogenicPoints }})
   </button>
+  {{/if}}
 
   <div class="info-container__list" data-accordion-type="retrogenics">
     {{#each untrainedRetrogenics as |retrogenicPrice|}}
-    <div class="info-container__item">
+    <div class="info-container__item" data-key="{{@key}}">
       <div>{{ localizeRetrogenic @key "name" }} ({{retrogenicPrice}})</div>
       <div>{{ localizeRetrogenic @key "description" }}</div>
     </div>

@@ -1,7 +1,14 @@
 // @ts-nocheck
 
 import { ZAIBATSU } from "../config";
-import { CharacteristicEnum, Concept, ConceptData } from "../types";
+import {
+  CharacteristicEnum,
+  Concept,
+  ConceptData,
+  RetrogenicAdaptation,
+  RetrogenicAdaptationEnum,
+  Skill,
+} from "../types";
 import { templatesPath } from "../utils/path";
 
 // Tracks open/closed state of accordion sections
@@ -122,6 +129,22 @@ export class ZaibatsuActorSheet extends ActorSheet {
     html
       .find(".roll-section__roll-attributes")
       .on("click", this._onRollAttributes.bind(this));
+
+    html
+      .find(
+        ".info-container.skills .info-container__list .info-container__item",
+      )
+      .on("click", this._onClickSkill.bind(this));
+
+    html
+      .find(
+        ".info-container.retrogenics .info-container__list .info-container__item",
+      )
+      .on("click", this._onClickRetrogenic.bind(this));
+
+    html
+      .find(".info-container.skills .info-container__body .skill-level")
+      .on("click", this._onSkillLevelUp.bind(this));
   }
 
   /**
@@ -134,7 +157,7 @@ export class ZaibatsuActorSheet extends ActorSheet {
     const target = <HTMLElement>event.target;
     const isForm = target?.nodeName === "FORM";
 
-    if (!target || !isForm) {
+    if (!target || !isForm || this.actor.system.isInitialized) {
       return;
     }
 
@@ -195,7 +218,7 @@ export class ZaibatsuActorSheet extends ActorSheet {
    * Handles concept selection
    * @param event - Click event
    */
-  public async _onClickConcept(event: Event) {
+  private async _onClickConcept(event: Event) {
     event.preventDefault();
 
     const target = <HTMLElement>event.currentTarget;
@@ -207,6 +230,53 @@ export class ZaibatsuActorSheet extends ActorSheet {
 
     const conceptSelect = this.element.find('select[name="concept.skill"]');
     conceptSelect.val(ConceptData[concept]?.skill[0]);
+  }
+
+  private async _onClickSkill(event: Event) {
+    event.preventDefault();
+
+    const target = <HTMLElement>event.currentTarget;
+    const skill = <Skill>target.dataset.key;
+
+    await this.actor.update({
+      "system.skillPoints": this.actor.system.skillPoints - 1,
+      "system.skills": {
+        [skill]: 1,
+      },
+    });
+  }
+
+  private async _onClickRetrogenic(event: Event) {
+    event.preventDefault();
+
+    const target = <HTMLElement>event.currentTarget;
+    const retrogenic = <RetrogenicAdaptation>target.dataset.key;
+    const retrogenicPrice = ZAIBATSU.RETROGENICS[retrogenic];
+
+    await this.actor.update({
+      "system.retrogenicPoints":
+        this.actor.system.retrogenicPoints - retrogenicPrice,
+      "system.retrogenicAdaptations":
+        this.actor.system.retrogenicAdaptations.concat(retrogenic),
+    });
+  }
+
+  private async _onSkillLevelUp(event: Event) {
+    event.preventDefault();
+
+    if (!this.actor.system.skillPoints) {
+      return;
+    }
+
+    const target = <HTMLElement>event.currentTarget;
+    const skill = <Skill>target.dataset.key;
+
+    await this.actor.update({
+      "system.skillPoints": this.actor.system.skillPoints - 1,
+      "system.skills": {
+        [skill]: this.actor.system.skills[skill] + 1,
+      },
+    });
   }
 
   /**

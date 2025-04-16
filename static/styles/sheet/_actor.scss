@@ -100,8 +100,11 @@
     gap: 2rem;
   }
 
-  .info-container__body .info-container__item > *:not(:first-child) {
-    text-align: center;
+  .skills.info-container,
+  .characteristics.info-container {
+    .info-container__body .info-container__item > *:not(:first-child) {
+      text-align: center;
+    }
   }
 
   .info-container__learn {
@@ -118,6 +121,17 @@
     }
   }
 
+  .info-container.skills,
+  .info-container.retrogenics {
+    .info-container__list .info-container__item {
+      cursor: pointer;
+
+      &:hover {
+        color: colors.$light-color;
+      }
+    }
+  }
+
   .characteristics.info-container .info-container__body .info-container__item {
     grid-template-columns: auto 15% 15% 15%;
 
@@ -127,7 +141,7 @@
   }
 
   .skills.info-container .info-container__body .info-container__item {
-    grid-template-columns: auto 15% 15%;
+    grid-template-columns: auto 15%;
   }
 
   .weapon.info-container .info-container__body .info-container__item {
@@ -136,6 +150,20 @@
 
   .armor.info-container .info-container__body .info-container__item {
     grid-template-columns: auto 15% 15%;
+  }
+
+  .skills.info-container {
+    .skill-level {
+      cursor: pointer;
+
+      &:hover {
+        color: colors.$light-color;
+      }
+    }
+
+    .skill-level-up {
+      font-weight: bold;
+    }
   }
 
   .info-container__title {
