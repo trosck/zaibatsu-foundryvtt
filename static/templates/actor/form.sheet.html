@@ -5,6 +5,13 @@
 
   <div class="actor-sheet__aside-photo">
     <img class="actor-sheet__aside-img" src="{{actor.img}}" />
+
+    <div
+      class="actor-sheet__aside-concept"
+      data-tooltip='{{ localizeConcept system.concept key="description" }}'
+    >
+      {{ localizeConcept system.concept key="name" }}
+    </div>
   </div>
 
   <div class="actor-sheet__aside-name">
