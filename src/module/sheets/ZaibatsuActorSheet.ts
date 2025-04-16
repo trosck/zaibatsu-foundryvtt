@@ -50,15 +50,14 @@ export class ZaibatsuActorSheet extends ActorSheet {
   async getData(options?: Partial<ActorSheet.Options> | undefined) {
     const context = await super.getData(options);
 
-    // Shortcut references
     context.system = context.document.system;
     context.CONFIG = CONFIG;
 
-    // Only load unlearned skills for uninitialized characters
     if (!context.system.isInitialized) {
       context.characteristicRolls = this.characteristicRolls;
-      context.unlearnedSkills = this.getUnlearnedSkills(context.document);
-      context.unlearnedRetrogenics = this.getUnlearnedRetrogenics(
+    } else {
+      context.untrainedSkills = this.getUntrainedSkills(context.document);
+      context.untrainedRetrogenics = this.getUntrainedRetrogenics(
         context.document,
       );
     }
@@ -279,17 +278,17 @@ export class ZaibatsuActorSheet extends ActorSheet {
    * @param actor - Target actor
    * @returns Array of skill names
    */
-  private getLearnedSkills(actor: Actor) {
+  private getTrainedSkills(actor: Actor) {
     return Object.keys(actor.system.skills);
   }
 
   /**
-   * Gets list of available unlearned skills
+   * Gets list of available untrained skills
    * @param actor - Target actor
    * @returns Filtered array of skills
    */
-  private getUnlearnedSkills(actor: Actor) {
-    const learnedSkills = new Set(this.getLearnedSkills(actor));
+  private getUntrainedSkills(actor: Actor) {
+    const learnedSkills = new Set(this.getTrainedSkills(actor));
     return ZAIBATSU.SKILLS.filter((skill) => !learnedSkills.has(skill));
   }
 
@@ -298,17 +297,17 @@ export class ZaibatsuActorSheet extends ActorSheet {
    * @param actor - Target actor
    * @returns Array of adaptation IDs
    */
-  private getLearnedRetrogenics(actor: Actor): string[] {
+  private getTrainedRetrogenics(actor: Actor): string[] {
     return actor.system.retrogenicAdaptations;
   }
 
   /**
-   * Gets available unlearned retrogenics
+   * Gets available untrained retrogenics
    * @param actor - Target actor
    * @returns Filtered retrogenics object
    */
-  private getUnlearnedRetrogenics(actor: Actor): typeof ZAIBATSU.RETROGENICS {
-    const learnedRetrogenics = this.getLearnedRetrogenics(actor);
+  private getUntrainedRetrogenics(actor: Actor): typeof ZAIBATSU.RETROGENICS {
+    const learnedRetrogenics = this.getTrainedRetrogenics(actor);
 
     if (!learnedRetrogenics.length) {
       return ZAIBATSU.RETROGENICS;

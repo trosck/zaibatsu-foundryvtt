@@ -51,7 +51,7 @@
   </button>
 
   <div class="info-container__list" data-accordion-type="skills">
-    {{#each unlearnedSkills as |skill|}}
+    {{#each untrainedSkills as |skill|}}
     <div class="info-container__item">
       <div>{{ localizeSkill skill "name" }}</div>
       <div>{{ localizeSkill skill "description" }}</div>
@@ -84,7 +84,7 @@
   </button>
 
   <div class="info-container__list" data-accordion-type="retrogenics">
-    {{#each unlearnedRetrogenics as |retrogenicPrice|}}
+    {{#each untrainedRetrogenics as |retrogenicPrice|}}
     <div class="info-container__item">
       <div>{{ localizeRetrogenic @key "name" }} ({{retrogenicPrice}})</div>
       <div>{{ localizeRetrogenic @key "description" }}</div>
