@@ -52,6 +52,7 @@
     "mod": "МОД"
   },
   "sheet": {
+    "next": "Далее",
     "actorCreation": "Создание персонажа",
     "RetrogenicAdaptations": "Ретрогенные адаптации",
     "characteristics": "Характеристики",
