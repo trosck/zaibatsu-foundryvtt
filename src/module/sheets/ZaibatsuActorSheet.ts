@@ -17,6 +17,8 @@ const ACCORDION = {
   retrogenics: false,
 };
 
+type Accordion = keyof typeof ACCORDION;
+
 export class ZaibatsuActorSheet extends ActorSheet {
   static get defaultOptions(): ActorSheet.Options {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -114,13 +116,19 @@ export class ZaibatsuActorSheet extends ActorSheet {
   public activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
-    // Initialize accordions as hidden
-    html.find(".info-container__list").hide();
+    for (const key in ACCORDION) {
+      const isShown = ACCORDION[key];
+      if (isShown) {
+        continue;
+      }
+
+      html.find(`.info-container__list[data-accordion-type="${key}"]`).hide();
+    }
 
     // Set up event handlers
     html
       .find(".info-container__learn")
-      .on("click", this._toggleAccordion.bind(this));
+      .on("click", this._onToggleAccordion.bind(this));
 
     html
       .find(".form-init__group--concept-item")
@@ -238,12 +246,18 @@ export class ZaibatsuActorSheet extends ActorSheet {
     const target = <HTMLElement>event.currentTarget;
     const skill = <Skill>target.dataset.key;
 
+    const newValue = this.actor.system.skillPoints - 1;
+
     await this.actor.update({
-      "system.skillPoints": this.actor.system.skillPoints - 1,
+      "system.skillPoints": newValue,
       "system.skills": {
         [skill]: 1,
       },
     });
+
+    if (!newValue) {
+      this.toggleAccordion("skills");
+    }
   }
 
   private async _onClickRetrogenic(event: Event) {
@@ -253,12 +267,17 @@ export class ZaibatsuActorSheet extends ActorSheet {
     const retrogenic = <RetrogenicAdaptation>target.dataset.key;
     const retrogenicPrice = ZAIBATSU.RETROGENICS[retrogenic];
 
+    const newValue = this.actor.system.retrogenicPoints - retrogenicPrice;
+
     await this.actor.update({
-      "system.retrogenicPoints":
-        this.actor.system.retrogenicPoints - retrogenicPrice,
+      "system.retrogenicPoints": newValue,
       "system.retrogenicAdaptations":
         this.actor.system.retrogenicAdaptations.concat(retrogenic),
     });
+
+    if (!newValue) {
+      this.toggleAccordion("retrogenics");
+    }
   }
 
   private async _onSkillLevelUp(event: Event) {
@@ -283,10 +302,20 @@ export class ZaibatsuActorSheet extends ActorSheet {
    * Toggles accordion sections
    * @param event - Click event
    */
-  private async _toggleAccordion(event: Event): Promise<void> {
-    const target = <HTMLElement>event.currentTarget;
-    const type = target.dataset?.accordionType;
+  private _onToggleAccordion(event: Event): Promise<void> {
+    event.preventDefault();
 
+    const target = <HTMLElement>event.currentTarget;
+    const type = <Accordion>target.dataset?.accordionType;
+
+    if (!type) {
+      return;
+    }
+
+    this.toggleAccordion(type);
+  }
+
+  private toggleAccordion(type: Accordion) {
     if (!Object.keys(ACCORDION).includes(type)) {
       throw new Error("Invalid accordion type: " + type);
     }
@@ -294,6 +323,8 @@ export class ZaibatsuActorSheet extends ActorSheet {
     const accordion = this.element.find(
       `.info-container__list[data-accordion-type="${type}"]`,
     );
+
+    ACCORDION[type] = !ACCORDION[type];
 
     accordion.slideToggle(200); // Animated toggle
   }
