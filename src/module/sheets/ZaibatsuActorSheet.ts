@@ -2,6 +2,7 @@
 
 import { ZAIBATSU } from "../config";
 import {
+  Characteristic,
   CharacteristicEnum,
   Concept,
   ConceptData,
@@ -47,13 +48,20 @@ export class ZaibatsuActorSheet extends ActorSheet {
   }
 
   /**
-   * Stores results of characteristic dice rolls
-   * @property {string} results - Formatted roll results as text
-   * @property {number[]} diceGroups - Roll results grouped in pairs
+   * Stores results of stats dice rolls
    */
   private characteristicRolls = {
-    diceGroups: [],
+    diceResults: "",
+    availableValues: [],
     showRollButton: true,
+    characteristiscs: ZAIBATSU.CHARACTERISTICS.reduce((arr, char) => {
+      arr.push({
+        key: char,
+        value: 0,
+      });
+
+      return arr;
+    }, []),
   };
 
   /**
@@ -105,7 +113,6 @@ export class ZaibatsuActorSheet extends ActorSheet {
     // Restore scroll positions on the next animation frame
     // Ensures DOM is fully rendered before restoration
     requestAnimationFrame(() => {
-      this.showCurrentSlide();
       this.element.find(className).each((i, el) => {
         if (scrollPositions[el.className]) {
           el.scrollTop = scrollPositions[el.className].top;
@@ -113,6 +120,12 @@ export class ZaibatsuActorSheet extends ActorSheet {
         }
       });
     });
+
+    if (!this.actor.isInitialized) {
+      requestAnimationFrame(() => {
+        this.showCurrentSlide();
+      });
+    }
   }
 
   /**
@@ -187,12 +200,9 @@ export class ZaibatsuActorSheet extends ActorSheet {
     const formData = new FormData(target);
 
     const characteristics = {};
-    for (let i = 0; i < 6; i++) {
-      const key = formData.get(`characteristicRolls.${i}.key`);
-      const value = formData.get(`characteristicRolls.${i}.value`);
-
-      characteristics[key] = {
-        value: parseInt(value),
+    for (const char of this.characteristicRolls.characteristiscs) {
+      characteristics[char.key] = {
+        value: parseInt(char.value),
         damage: 0,
       };
     }
@@ -247,11 +257,35 @@ export class ZaibatsuActorSheet extends ActorSheet {
     const target = <HTMLElement>event.target;
     const name = target.getAttribute("name");
 
-    if (name?.includes("characteristicRolls") || name === "concept.skill") {
+    if (name?.includes("characteristicRolls")) {
+      return this._onCharacteristicRolls(event);
+    } else if (name === "concept.skill") {
       return;
     } else {
       super._onChangeInput(event);
     }
+  }
+
+  private async _onCharacteristicRolls(event: Event) {
+    const target = <HTMLSelectElement>event.target;
+
+    const char = target.dataset.key;
+    const value = parseInt(target.value);
+
+    const valueIndex = this.characteristicRolls.availableValues.indexOf(value);
+    this.characteristicRolls.availableValues.splice(valueIndex, 1);
+
+    const charItem = this.characteristicRolls.characteristiscs.find(
+      ({ key }) => key === char,
+    );
+
+    charItem.value = value;
+
+    await this.actor.update({
+      "system.characteristics": {
+        [char]: { value },
+      },
+    });
   }
 
   /**
@@ -431,20 +465,19 @@ export class ZaibatsuActorSheet extends ActorSheet {
       terms: [{ results }],
     } = roll;
 
-    // Process results in pairs (2d6 per characteristic)
     const diceResults = [];
+    // Process results in pairs (2d6 per characteristic)
     for (let i = 0; i < results.length; i += 2) {
       const firstDice = results[i].result;
       const secondDice = results[i + 1].result;
       const result = firstDice + secondDice;
 
-      this.characteristicRolls.diceGroups.push({
-        title: `${firstDice} + ${secondDice} = ${result}`,
-        result,
-      });
+      diceResults.push(`${firstDice} + ${secondDice} = ${result}`);
+
+      this.characteristicRolls.availableValues.push(result);
     }
 
-    this.characteristicRolls.results = diceResults.join(", ");
+    this.characteristicRolls.diceResults = diceResults.join("; ");
     this.characteristicRolls.showRollButton = false;
 
     /**
