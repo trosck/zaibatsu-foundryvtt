@@ -14,4 +14,8 @@ export function registerCommonHelpers() {
   Handlebars.registerHelper("concat", (...args: string[]) => {
     return args.filter((arg) => typeof arg === "string").join("");
   });
+
+  Handlebars.registerHelper("toJSON", (value) => {
+    return JSON.stringify(value);
+  });
 }
