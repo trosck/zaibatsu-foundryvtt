@@ -1,5 +1,9 @@
 @use "colors";
 
+.app.window-app.filepicker label {
+  color: colors.$default-color;
+}
+
 .form-init__wrapper.concept-title,
 .window-content,
 .window-app .window-content,
@@ -30,6 +34,7 @@ p {
   background-color: transparent;
   font-family: inherit;
 }
+
 .application input[type="text"],
 .application input[type="number"],
 .application input[type="password"],
@@ -133,4 +138,21 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   appearance: textfield;
   -moz-appearance: textfield;
+}
+
+/* file picker updates*/
+.filepicker .favorites .path,
+.filepicker .display-modes a {
+  background: colors.$background-nearly-opaque;
+}
+
+.filepicker .display-modes a.active {
+  background-color: colors.$default-color;
+  color: colors.$item-active;
+  text-shadow: none;
+}
+
+.filepicker .display-modes a:hover {
+  /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
+  color: colors.$item-hover;
 }
