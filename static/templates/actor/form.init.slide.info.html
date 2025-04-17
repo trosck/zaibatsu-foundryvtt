@@ -1,27 +1,31 @@
 <div class="form-init__wrapper info">
-  <div class="form-init__group name">
-    <label for="actor.name">{{localize "sheet.actor.name"}}:</label>
-    <input
-      name="name"
-      type="text"
-      value="{{actor.name}}"
-      placeholder='{{localize "sheet.actor.name"}}'
-      onclick="this.select()"
-    />
-  </div>
+  <img class="info__img" src="{{actor.img}}" data-edit="img" />
 
-  <div class="form-init__group age">
-    <label for="system.age">{{localize "sheet.actor.info.age"}}:</label>
-    <input
-      type="text"
-      name="system.age"
-      value="{{ system.age }}"
-      data-dtype="Number"
-    />
-  </div>
+  <div class="form-init__wrapper">
+    <div class="form-init__group name">
+      <label for="actor.name">{{localize "sheet.actor.name"}}:</label>
+      <input
+        name="name"
+        type="text"
+        value="{{actor.name}}"
+        placeholder='{{localize "sheet.actor.name"}}'
+        onclick="this.select()"
+      />
+    </div>
 
-  <div class="form-init__group gender">
-    <label for="system.gender">{{localize "sheet.actor.info.gender"}}:</label>
-    <input type="text" name="system.gender" value="{{ system.gender }}" />
+    <div class="form-init__group age">
+      <label for="system.age">{{localize "sheet.actor.info.age"}}:</label>
+      <input
+        type="text"
+        name="system.age"
+        value="{{ system.age }}"
+        data-dtype="Number"
+      />
+    </div>
+
+    <div class="form-init__group gender">
+      <label for="system.gender">{{localize "sheet.actor.info.gender"}}:</label>
+      <input type="text" name="system.gender" value="{{ system.gender }}" />
+    </div>
   </div>
 </div>
