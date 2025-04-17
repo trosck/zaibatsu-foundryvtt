@@ -398,6 +398,12 @@ export class ZaibatsuActorSheet extends ActorSheet {
 
     const newValue = this.actor.system.retrogenicPoints - retrogenicPrice;
 
+    if (newValue < 0) {
+      return ui.notifications.warn("notifications.notEnough.retrogenics", {
+        localize: true,
+      });
+    }
+
     await this.actor.update({
       "system.retrogenicPoints": newValue,
       "system.retrogenicAdaptations":
