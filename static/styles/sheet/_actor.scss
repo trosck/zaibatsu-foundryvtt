@@ -21,15 +21,16 @@
     margin-top: 8px;
 
     .window-title {
-      margin-left: 3%;
+      display: none;
     }
 
     .header-button.control.close {
       margin-right: 5%;
+      margin-left: auto;
     }
 
-    .header-button.control.configure-token {
-      margin-right: 6%;
+    .document-id-link {
+      margin-left: 11%;
     }
   }
 
@@ -139,10 +140,6 @@
         color: colors.$light-color;
       }
     }
-  }
-
-  .info-container__item .retrogenic-description {
-    text-transform: capitalize;
   }
 
   .characteristics.info-container .info-container__body .info-container__item {

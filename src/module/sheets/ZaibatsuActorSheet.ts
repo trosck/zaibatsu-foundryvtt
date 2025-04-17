@@ -64,6 +64,37 @@ export class ZaibatsuActorSheet extends ActorSheet {
     }, []),
   };
 
+  protected async _renderOuter(): Promise<JQuery<HTMLElement>> {
+    const html = await super._renderOuter();
+    const header = html[0].querySelector(".window-header");
+
+    // Adjust header buttons.
+    header.querySelectorAll(".header-button").forEach((button) => {
+      if (button.classList.contains("close")) {
+        return;
+      }
+
+      const label = button.querySelector(":scope > i").nextSibling;
+
+      button.dataset.tooltip = label.textContent;
+      button.setAttribute("aria-label", label.textContent);
+      button.addEventListener("dblclick", (event) => event.stopPropagation());
+
+      label.remove();
+    });
+
+    // Document UUID link.
+    const firstButton = header.querySelector(".header-button");
+    const idLink = header.querySelector(".document-id-link");
+    if (idLink) {
+      firstButton?.insertAdjacentElement("beforebegin", idLink);
+      idLink.classList.add("pseudo-header-button");
+      idLink.dataset.tooltipDirection = "DOWN";
+    }
+
+    return html;
+  }
+
   /**
    * Prepares data for template rendering
    * @param options - Sheet rendering options
