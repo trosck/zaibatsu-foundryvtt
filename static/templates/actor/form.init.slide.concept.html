@@ -9,11 +9,13 @@
     ></i>
   </h3>
 
+  {{#if system.concept}}
   <select name="concept.skill">
     {{#each (getConceptSkills system.concept) as |skill|}}
     <option value="{{skill}}">{{ localizeSkill skill "name" }}</option>
     {{/each}}
   </select>
+  {{/if}}
 </div>
 
 <div class="form-init__wrapper concept-list save-scroll-state">
