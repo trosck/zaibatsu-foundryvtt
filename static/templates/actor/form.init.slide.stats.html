@@ -3,33 +3,85 @@
 
   <div class="roll-section">
     {{#if characteristicRolls.showRollButton}}
-    <button type="button" class="roll-section__roll-attributes">
-      {{ localize "sheet.actor.statsGeneration.buttonRoll" }}
-    </button>
+    <div class="roll-section__intro">
+      <p>{{ localize "sheet.actor.statsGeneration.intro" }}</p>
+      <button type="button" class="roll-section__roll-attributes">
+        <i class="fas fa-dice-d20"></i>
+        {{ localize "sheet.actor.statsGeneration.buttonRoll" }}
+      </button>
+    </div>
     {{else}}
-    <div>{{ characteristicRolls.diceResults }}</div>
-    <div class="roll-section__dice-groups">
-      {{#each characteristicRolls.characteristiscs as |char|}}
-      <div class="roll-section__dice-groups--wrapper">
-        <div class="dice-group__item">
-          <label>
-            {{ localizeCharacteristic char.key "full"}} - {{ char.value }}
-          </label>
-          <select
-            name="characteristicRolls.{{char.key}}"
-            data-key="{{char.key}}"
-            value="0"
-          >
-            <option value="">---</option>
-            {{#each ../characteristicRolls.availableValues as |value|}}
-            <option value="{{value}}">{{ value }}</option>
-            {{/each}}
-          </select>
+    <div class="roll-section__results">
+      <div class="roll-section__results-header">
+        <div class="roll-section__results-controls">
+          <h4>{{ localize "sheet.actor.statsGeneration.results" }}</h4>
+          <button type="button" class="roll-section__reset-all" data-tooltip="{{ localize 'sheet.actor.statsGeneration.resetAll' }}">
+            <i class="fas fa-undo"></i>
+          </button>
         </div>
-
-        <div>{{ localizeCharacteristic char.key "desc"}}</div>
+        <div class="roll-section__results-dice">
+          {{#each characteristicRolls.diceResults as |result|}}
+          <div class="dice-result">
+            <div class="dice-result__dice">
+              <span class="dice-result__value">{{result.first}}</span>
+              <span class="dice-result__plus">+</span>
+              <span class="dice-result__value">{{result.second}}</span>
+            </div>
+            <div class="dice-result__total">
+              <span class="dice-result__equals">=</span>
+              <span class="dice-result__value">{{result.total}}</span>
+            </div>
+          </div>
+          {{/each}}
+        </div>
       </div>
-      {{/each}}
+      <div class="roll-section__dice-groups">
+        {{#each characteristicRolls.characteristiscs as |char|}}
+        <div class="roll-section__dice-groups--wrapper">
+          <div class="dice-group__item">
+            <div class="characteristic-header">
+              <div class="characteristic-header__left">
+                <span class="characteristic-name">{{ localizeCharacteristic char.key "full"}}</span>
+                {{#with (localizeCharacteristic char.key "bonus") as |bonus|}} 
+                  {{#if bonus}}
+                  <i class="fas fa-info-circle" data-tooltip="{{bonus}}"></i>
+                  {{/if}} 
+                {{/with}}
+              </div>
+              <div class="characteristic-header__right">
+                <span class="characteristic-value">{{ char.value }}</span>
+                {{#if char.value}}
+                <button type="button" class="characteristic-reset" data-key="{{char.key}}" data-tooltip="{{ localize 'sheet.actor.statsGeneration.reset' }}">
+                  <i class="fas fa-times"></i>
+                </button>
+                {{/if}}
+              </div>
+            </div>
+            <div class="characteristic-select">
+              <select
+                name="characteristicRolls.{{char.key}}"
+                data-key="{{char.key}}"
+                value="0"
+              >
+                <option value="">---</option>
+                {{#each ../characteristicRolls.availableValues as |value|}}
+                <option value="{{value}}">{{ value }}</option>
+                {{/each}}
+                {{#each ../characteristicRolls.characteristiscs as |otherChar|}}
+                  {{#if (and (ne otherChar.key char.key) otherChar.value)}}
+                  <option value="{{otherChar.value}}" disabled>{{ otherChar.value }} ({{ localizeCharacteristic otherChar.key "short"}})</option>
+                  {{/if}}
+                {{/each}}
+              </select>
+            </div>
+          </div>
+
+          <div class="stats__description">
+            {{ localizeCharacteristic char.key "desc"}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
     </div>
     {{/if}}
   </div>

@@ -203,6 +203,14 @@ export class ZaibatsuActorSheet extends ActorSheet {
     html
       .find(".info-container.skills .info-container__body .skill-level")
       .on("click", this._onSkillLevelUp.bind(this));
+
+    html
+      .find(".roll-section__reset-all")
+      .on("click", this._onResetAllCharacteristics.bind(this));
+
+    html
+      .find(".characteristic-reset")
+      .on("click", this._onResetCharacteristic.bind(this));
   }
 
   /**
@@ -303,13 +311,25 @@ export class ZaibatsuActorSheet extends ActorSheet {
     const char = target.dataset.key;
     const value = parseInt(target.value);
 
-    const valueIndex = this.characteristicRolls.availableValues.indexOf(value);
-    this.characteristicRolls.availableValues.splice(valueIndex, 1);
-
+    // Find the characteristic that was previously selected
     const charItem = this.characteristicRolls.characteristiscs.find(
       ({ key }) => key === char,
     );
 
+    // If there was a previous value, restore it to available values
+    if (charItem.value) {
+      this.characteristicRolls.availableValues.push(charItem.value);
+      // Sort to maintain order
+      this.characteristicRolls.availableValues.sort((a, b) => a - b);
+    }
+
+    // Remove the newly selected value from available values
+    const valueIndex = this.characteristicRolls.availableValues.indexOf(value);
+    if (valueIndex !== -1) {
+      this.characteristicRolls.availableValues.splice(valueIndex, 1);
+    }
+
+    // Update the characteristic's value
     charItem.value = value;
 
     await this.actor.update({
@@ -509,12 +529,16 @@ export class ZaibatsuActorSheet extends ActorSheet {
       const secondDice = results[i + 1].result;
       const result = firstDice + secondDice;
 
-      diceResults.push(`${firstDice} + ${secondDice} = ${result}`);
+      diceResults.push({
+        first: firstDice,
+        second: secondDice,
+        total: result,
+      });
 
       this.characteristicRolls.availableValues.push(result);
     }
 
-    this.characteristicRolls.diceResults = diceResults.join("; ");
+    this.characteristicRolls.diceResults = diceResults;
     this.characteristicRolls.showRollButton = false;
 
     /**
@@ -572,5 +596,55 @@ export class ZaibatsuActorSheet extends ActorSheet {
     }
 
     return retrogenics;
+  }
+
+  private async _onResetAllCharacteristics(event: Event) {
+    event.preventDefault();
+
+    // Reset all characteristics
+    for (const char of this.characteristicRolls.characteristiscs) {
+      if (char.value) {
+        this.characteristicRolls.availableValues.push(char.value);
+        char.value = 0;
+      }
+    }
+
+    // Sort available values
+    this.characteristicRolls.availableValues.sort((a, b) => a - b);
+
+    await this.actor.update({
+      "system.characteristics":
+        this.characteristicRolls.characteristiscs.reduce((acc, char) => {
+          acc[char.key] = { value: 0 };
+          return acc;
+        }, {}),
+    });
+  }
+
+  private async _onResetCharacteristic(event: Event) {
+    event.preventDefault();
+
+    const target = <HTMLElement>event.currentTarget;
+    const charKey = target.dataset.key;
+
+    // Find the characteristic
+    const charItem = this.characteristicRolls.characteristiscs.find(
+      ({ key }) => key === charKey,
+    );
+
+    if (charItem?.value) {
+      // Restore the value to available values
+      this.characteristicRolls.availableValues.push(charItem.value);
+      // Sort available values
+      this.characteristicRolls.availableValues.sort((a, b) => a - b);
+      // Reset the characteristic value
+      charItem.value = 0;
+
+      await this.actor.update({
+        "system.characteristics": {
+          [charKey]: { value: 0 },
+        },
+      });
+    }
   }
 }
