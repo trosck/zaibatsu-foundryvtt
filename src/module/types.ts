@@ -1,46 +1,63 @@
 import { ZAIBATSU } from "./config";
 import { dictFromArray } from "./utils/dictFromArray";
 
+// Available character skills
 export type Skill = (typeof ZAIBATSU.SKILLS)[number];
 
+// Maps skill names to their corresponding values
 export const SkillEnum = dictFromArray<Skill>(ZAIBATSU.SKILLS);
 
+// Core character attributes like strength, dexterity, etc
 export type Characteristic = (typeof ZAIBATSU.CHARACTERISTICS)[number];
 
+// Maps characteristic names to their corresponding values
 export const CharacteristicEnum = dictFromArray<Characteristic>(
   ZAIBATSU.CHARACTERISTICS,
 );
 
+// Genetic modifications that can be applied to characters
 export type RetrogenicAdaptation = keyof typeof ZAIBATSU.RETROGENICS;
 
+// Maps retrogenics names to their corresponding values
 export const RetrogenicAdaptationEnum = dictFromArray<RetrogenicAdaptation>(
   Object.keys(ZAIBATSU.RETROGENICS),
 );
 
+// Possible states for equipped items (held, stored, etc)
 export type EquippedState = (typeof ZAIBATSU.EQUIPPED_STATES)[number];
 
+// Maps equipment states to their corresponding values
 export const EquippedStateEnum = dictFromArray<EquippedState>(
   ZAIBATSU.EQUIPPED_STATES,
 );
 
+// Available weapon categories with defined range properties
 export type Weapon = keyof typeof ZAIBATSU.WEAPON_RANGES;
 
+// Maps weapon names to their corresponding values
 export const WeaponEnum = dictFromArray<Weapon>(
   Object.keys(ZAIBATSU.WEAPON_RANGES),
 );
 
+// Classifications of different weapon styles
 export type WeaponType = (typeof ZAIBATSU.WEAPON_TYPES)[number];
 
+// Maps weapon classifications to their corresponding values
 export const WeaponTypeEnum = dictFromArray<WeaponType>(ZAIBATSU.WEAPON_TYPES);
 
+// Categories of items (weapon, armor)
 export type ItemType = (typeof ZAIBATSU.ITEM_TYPES)[number];
 
+// Maps item categories to their corresponding values
 export const ItemTypeEnum = dictFromArray<ItemType>(ZAIBATSU.ITEM_TYPES);
 
+// Character archetypes/professions
 export type Concept = (typeof ZAIBATSU.CONCEPTS)[number];
 
+// Maps character concepts to their corresponding values
 export const ConceptEnum = dictFromArray<Concept>(ZAIBATSU.CONCEPTS);
 
+// Defines base characteristics and skills for each character concept
 export const ConceptData = <const>{
   [ConceptEnum.Affirist]: {
     characteristic: CharacteristicEnum.soc,
@@ -108,10 +125,13 @@ export const ConceptData = <const>{
   },
 };
 
+// Structure of individual concept entries in ConceptData
 export type ConceptDataItem = (typeof ConceptData)[Concept];
 
+// How/where items can be concealed on a character
 export type ConcealmentType = (typeof ZAIBATSU.CONCEALMENT_TYPES)[number];
 
+// Maps concealment locations to their corresponding values
 export const ConcealmentEnum = dictFromArray<ConcealmentType>(
   ZAIBATSU.CONCEALMENT_TYPES,
 );
